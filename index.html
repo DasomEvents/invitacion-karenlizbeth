@@ -34,6 +34,17 @@
       <stop offset="75%" stop-color="#c7c4bd"/>
       <stop offset="100%" stop-color="#a9a69e"/>
     </radialGradient>
+    <linearGradient id="glassGrad" x1="10%" y1="0%" x2="90%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="45%" stop-color="#dfe0e5" stop-opacity="0.65"/>
+      <stop offset="75%" stop-color="#b7b9c2" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#eceef1" stop-opacity="0.95"/>
+    </linearGradient>
+    <radialGradient id="shineSpot" cx="30%" cy="22%" r="65%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="55%" stop-color="#ffffff" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
 
     <!-- perla individual -->
     <symbol id="pearl" viewBox="0 0 40 40">
@@ -70,20 +81,41 @@
       <circle cx="100" cy="55" r="6" fill="url(#silverGrad)"/>
     </symbol>
 
-    <!-- bolso de compras elegante, con listón — silueta propia, sin logotipo ni marca -->
+    <!-- bolso de compras elegante, con listón — silueta propia, sin logotipo ni marca.
+         Con relleno de cristal/metal, sombra interna y brillo para dar sensación 3D. -->
     <symbol id="bag" viewBox="0 0 100 118">
-      <g fill="none" stroke="url(#silverGrad)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M11 39 H89 L81 112 H19 Z" fill="url(#glassGrad)"/>
+      <path d="M11 39 H89 L86 55 H14 Z" fill="#000000" opacity="0.12"/>
+      <path d="M19 112 L23 62 L15 62 Z" fill="#000000" opacity="0.12"/>
+      <g fill="none" stroke="url(#silverGrad)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
         <path d="M27 39 C27 19 34 6 50 6 C66 6 73 19 73 39"/>
         <path d="M11 39 H89 L81 112 H19 Z"/>
       </g>
+      <ellipse cx="34" cy="55" rx="10" ry="22" fill="url(#shineSpot)"/>
       <use href="#bow" x="28" y="46" width="44" height="24"/>
     </symbol>
 
-    <!-- zapatilla de tacón, silueta de línea — sin marca -->
+    <!-- zapatilla de tacón, silueta con volumen — sin marca -->
     <symbol id="heel" viewBox="0 0 130 84">
       <path d="M8 54 C8 38 24 30 42 30 C54 30 60 24 70 19 C84 12 100 13 110 22 C115 26 113 33 106 35 L99 37 L99 52 C99 60 92 67 83 67 L24 67 C14 67 8 61 8 54 Z"
-            fill="url(#silverGrad)" stroke="#ffffff" stroke-opacity="0.35" stroke-width="0.6"/>
-      <path d="M99 37 L106 73 C107 78 102 81 98 77 L90 67" fill="none" stroke="url(#silverGrad)" stroke-width="3.6" stroke-linecap="round"/>
+            fill="url(#silverGrad)" stroke="#ffffff" stroke-opacity="0.4" stroke-width="0.8"/>
+      <path d="M20 58 C20 48 30 42 45 41 C58 40 64 35 72 29" fill="none" stroke="#ffffff" stroke-opacity="0.55" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M24 67 C40 70 70 70 83 67 C83 71 78 74 70 74 L34 74 C26 74 24 70 24 67 Z" fill="#000000" opacity="0.18"/>
+      <ellipse cx="40" cy="44" rx="14" ry="9" fill="url(#shineSpot)"/>
+      <path d="M99 37 L106 73 C107 78 102 81 98 77 L90 67" fill="none" stroke="url(#silverGrad)" stroke-width="3.8" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- frasco de perfume, con tapa facetada y estela de brillo -->
+    <symbol id="perfume" viewBox="0 0 100 170">
+      <path d="M30 64 C30 60 33 57 37 57 H63 C67 57 70 60 70 64 V150 C70 156 65 161 59 161 H41 C35 161 30 156 30 150 Z" fill="url(#glassGrad)" stroke="url(#silverGrad)" stroke-width="1.6"/>
+      <rect x="40" y="30" width="20" height="30" rx="3" fill="url(#silverGrad)" stroke="#ffffff" stroke-opacity="0.4" stroke-width="0.8"/>
+      <path d="M32 12 H68 C71 12 73 14 73 17 V24 C73 27 71 29 68 29 H32 C29 29 27 27 27 24 V17 C27 14 29 12 32 12 Z" fill="url(#silverGrad)" stroke="#ffffff" stroke-opacity="0.45" stroke-width="0.8"/>
+      <rect x="36" y="95" width="28" height="34" fill="none" stroke="url(#silverGrad)" stroke-width="1.1" opacity="0.85"/>
+      <ellipse cx="41" cy="90" rx="6" ry="34" fill="url(#shineSpot)"/>
+      <path d="M50 8 C50 8 46 -2 42 -8 M50 8 C50 8 54 -2 58 -8 M50 8 V-10" stroke="url(#silverGrad)" stroke-width="1.4" stroke-linecap="round" opacity="0.8"/>
+      <use href="#sparkle" x="58" y="-14" width="26" height="26"/>
+      <use href="#sparkle" x="14" y="-4" width="16" height="16"/>
+      <use href="#sparkle" x="66" y="6" width="14" height="14"/>
     </symbol>
 
     <!-- collar de perlas, lazo abierto — acento decorativo -->
@@ -106,16 +138,19 @@
 
 <!-- ============ BOTÓN DE MÚSICA (flotante, visible en toda la página) ============ -->
 <audio id="bgMusic" src="audio/party.mp3" loop preload="none"></audio>
-<button id="musicToggle" class="music-toggle" type="button" aria-pressed="false" aria-label="Reproducir música de fondo">
-  <span class="music-toggle__ring" aria-hidden="true"></span>
-  <svg id="iconPlay" class="music-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-    <path d="M8 5.5v13l11-6.5z" fill="currentColor"/>
-  </svg>
-  <svg id="iconPause" class="music-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" hidden>
-    <rect x="6" y="5" width="4" height="14" fill="currentColor"/>
-    <rect x="14" y="5" width="4" height="14" fill="currentColor"/>
-  </svg>
-</button>
+<div class="music-toggle-wrap">
+  <button id="musicToggle" class="music-toggle" type="button" aria-pressed="false" aria-label="Reproducir música de fondo">
+    <span class="music-toggle__ring" aria-hidden="true"></span>
+    <svg id="iconPlay" class="music-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M8 5.5v13l11-6.5z" fill="currentColor"/>
+    </svg>
+    <svg id="iconPause" class="music-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" hidden>
+      <rect x="6" y="5" width="4" height="14" fill="currentColor"/>
+      <rect x="14" y="5" width="4" height="14" fill="currentColor"/>
+    </svg>
+  </button>
+  <span id="musicTooltip" class="music-toggle__tooltip" aria-hidden="true"></span>
+</div>
 <p id="musicStatus" class="sr-only" role="status" aria-live="polite"></p>
 
 <!-- Indicador de progreso de scroll (sutil, hilo plateado) -->
@@ -147,10 +182,12 @@
 
     <div class="hero__content">
       <p class="eyebrow reveal" data-reveal>Tienes una invitación especial</p>
-      <h1 class="hero__title">
-        <span class="reveal reveal--letters" data-reveal>Karen</span>
-        <span class="reveal reveal--letters" data-reveal style="--d:0.12s">Lizbeth</span>
-      </h1>
+      <div class="hero__title-wrap reveal" data-reveal style="--d:0.08s">
+        <h1 class="hero__title">
+          <span>Karen</span>
+          <span>Lizbeth</span>
+        </h1>
+      </div>
       <p class="hero__subtitle reveal" data-reveal style="--d:0.28s">Mis 40 años</p>
 
       <div class="hero__bow reveal" data-reveal style="--d:0.4s" aria-hidden="true">
@@ -170,8 +207,8 @@
   </section>
 
   <!-- ============ 2. PRESENTACIÓN ============ -->
-  <section id="presentacion" class="section section--photo" aria-label="Presentación del cumpleaños" style="background-image:url('assets/karen-retrato.jpg')">
-    <div class="container container--narrow presentacion-card reveal" data-reveal>
+  <section id="presentacion" class="section section--presentacion" aria-label="Presentación del cumpleaños">
+    <div class="presentacion-strip reveal" data-reveal>
       <p class="kicker">Un capítulo digno de celebrarse</p>
       <p class="lead">
         Te invito a celebrar este momento especial en mi vida.<br>
@@ -184,12 +221,16 @@
       </div>
       <p class="signature">— Karen Lizbeth</p>
     </div>
+    <div class="presentacion-photo">
+      <img src="assets/karen-retrato.jpg" alt="Karen Lizbeth lista para celebrar sus 40 años" class="presentacion-img">
+    </div>
   </section>
 
   <!-- ============ 3. FECHA Y HORA ============ -->
   <section id="fecha" class="section section--dark" aria-label="Fecha y hora del evento">
     <svg class="deco deco--rose deco--rose-corner" viewBox="0 0 120 120" aria-hidden="true"><use href="#rose"/></svg>
     <svg class="deco deco--sparkle deco--sparkle-c" viewBox="0 0 40 40" aria-hidden="true"><use href="#sparkle"/></svg>
+    <svg class="deco deco--heel deco--sm deco--heel-fecha" viewBox="0 0 130 84" aria-hidden="true"><use href="#heel"/></svg>
     <div class="pearl-row pearl-row--thin" aria-hidden="true">
       <svg viewBox="0 0 560 46" preserveAspectRatio="xMidYMid meet" style="aspect-ratio:560/46">
         <use href="#pearl" x="0" y="2" width="42" height="42"/>
@@ -243,6 +284,7 @@
   <section id="dresscode" class="section section--light" aria-label="Código de vestimenta">
     <svg class="deco deco--bag deco--bag-tl" viewBox="0 0 100 118" aria-hidden="true"><use href="#bag"/></svg>
     <svg class="deco deco--heel deco--heel-br" viewBox="0 0 130 84" aria-hidden="true"><use href="#heel"/></svg>
+    <svg class="deco deco--perfume deco--perfume-a" viewBox="0 0 100 170" aria-hidden="true"><use href="#perfume"/></svg>
 
     <div class="container container--narrow">
       <blockquote class="chanel-quote reveal" data-reveal>
@@ -290,6 +332,7 @@
     <svg class="deco deco--sparkle deco--sparkle-a" viewBox="0 0 40 40" aria-hidden="true"><use href="#sparkle"/></svg>
     <svg class="deco deco--sparkle deco--sparkle-b" viewBox="0 0 40 40" aria-hidden="true"><use href="#sparkle"/></svg>
     <svg class="deco deco--pearlloop deco--pearlloop-a" viewBox="0 0 100 100" aria-hidden="true"><use href="#pearlLoop"/></svg>
+    <svg class="deco deco--bag deco--sm deco--bag-confirmar" viewBox="0 0 100 118" aria-hidden="true"><use href="#bag"/></svg>
 
     <div class="container container--narrow">
       <p class="kicker kicker--light reveal" data-reveal>Tu presencia es el mejor regalo</p>
@@ -309,6 +352,7 @@
   <section id="ubicacion" class="section section--light" aria-label="Ubicación del evento">
     <svg class="deco deco--rose deco--rose-corner" viewBox="0 0 120 120" aria-hidden="true"><use href="#rose"/></svg>
     <svg class="deco deco--sparkle deco--sparkle-d" viewBox="0 0 40 40" aria-hidden="true"><use href="#sparkle"/></svg>
+    <svg class="deco deco--perfume deco--sm deco--perfume-ubicacion" viewBox="0 0 100 170" aria-hidden="true"><use href="#perfume"/></svg>
     <div class="container container--narrow">
       <p class="kicker reveal" data-reveal>Te esperamos en</p>
       <h2 class="section-title reveal" data-reveal style="--d:0.08s">Jardín La Villa</h2>
@@ -329,6 +373,8 @@
     <canvas id="particles2" class="particles" aria-hidden="true"></canvas>
     <svg class="deco deco--rose deco--rose-tl" viewBox="0 0 120 120" aria-hidden="true"><use href="#rose"/></svg>
     <svg class="deco deco--rose deco--rose-br" viewBox="0 0 120 120" aria-hidden="true"><use href="#rose"/></svg>
+    <svg class="deco deco--bag deco--sm deco--bag-cierre" viewBox="0 0 100 118" aria-hidden="true"><use href="#bag"/></svg>
+    <svg class="deco deco--heel deco--sm deco--heel-cierre" viewBox="0 0 130 84" aria-hidden="true"><use href="#heel"/></svg>
 
     <div class="hero__content hero__content--closing">
       <div class="closing__frame reveal" data-reveal aria-label="Fotografía de Karen Lizbeth">

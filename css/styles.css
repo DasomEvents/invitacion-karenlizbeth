@@ -80,25 +80,35 @@ input:focus-visible {
 .section--light { background: var(--ivory); color: var(--charcoal); }
 .section--dark  { background: linear-gradient(180deg, var(--black) 0%, #121113 100%); color: var(--grey-100); }
 
-.section--photo {
-  background-color: var(--charcoal);
-  background-size: cover;
-  background-position: center 14%;
-  background-repeat: no-repeat;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  min-height: clamp(560px, 100vh, 820px);
-  padding: 0 1.25rem;
+.section--presentacion {
+  padding: 0;
+  background: var(--ivory);
 }
 
-.presentacion-card {
+/* Franja sólida arriba, a modo de encabezado editorial — el resto de la
+   foto queda completa y sin recortar debajo. */
+.presentacion-strip {
+  position: relative;
+  z-index: 2;
   background: var(--ivory);
+  text-align: center;
+  padding: clamp(2.4rem, 9vw, 3.6rem) 1.5rem clamp(1.8rem, 6vw, 2.6rem);
+  box-shadow: 0 12px 30px -18px rgba(0, 0, 0, 0.3);
+}
+
+.presentacion-strip .kicker,
+.presentacion-strip .lead,
+.presentacion-strip .signature { max-width: 34ch; margin-left: auto; margin-right: auto; }
+
+.presentacion-photo {
   width: 100%;
-  padding: clamp(2.2rem, 7vw, 3.2rem) clamp(1.5rem, 6vw, 3rem);
-  margin-bottom: clamp(1.5rem, 6vh, 3rem);
-  border-radius: 2px;
-  box-shadow: 0 25px 60px -18px rgba(0, 0, 0, 0.55);
+  line-height: 0;
+}
+
+.presentacion-img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .container {
@@ -316,21 +326,42 @@ input:focus-visible {
 }
 
 .hero__title {
+  position: relative;
   margin: 0;
   font-family: var(--font-display);
   font-weight: 700;
   line-height: 1.05;
-  font-size: clamp(3.6rem, 16vw, 6.5rem);
+  font-size: clamp(4rem, 18vw, 7.2rem);
+  letter-spacing: 0.01em;
   background: var(--silver-shine);
   background-size: 200% 200%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 2px 18px rgba(255,255,255,0.08));
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 4px 30px rgba(255, 255, 255, 0.35), 0 0 60px rgba(200, 202, 210, 0.25);
   animation: shimmer 8s ease-in-out infinite;
 }
 
+/* Halo suave detrás del nombre: refuerza el brillo plateado sin usar
+   `filter`, que en varios navegadores vuelve invisible el texto cuando
+   se combina con background-clip: text. */
+.hero__title::before {
+  content: "";
+  position: absolute;
+  inset: -20% -10%;
+  z-index: -1;
+  background: radial-gradient(ellipse at center, rgba(230, 231, 236, 0.22) 0%, transparent 68%);
+  pointer-events: none;
+}
+
 .hero__title span { display: block; }
+
+/* El wrapper es quien anima la aparición (opacity/transform). El propio
+   .hero__title y sus <span> nunca deben llevar transition/transform: un
+   descendiente con transition dentro de un elemento con
+   background-clip: text vuelve el texto invisible en Chromium/WebKit. */
+.hero__title-wrap { margin: 0; }
 
 .hero__subtitle {
   font-family: var(--font-serif);
@@ -426,37 +457,73 @@ input:focus-visible {
   pointer-events: none;
 }
 
-.deco--rose { width: clamp(80px, 14vw, 150px); opacity: 0.35; }
+.deco--rose { width: clamp(90px, 16vw, 170px); opacity: 0.45; }
 .deco--rose-tl { top: -20px; left: -30px; }
 .deco--rose-br { bottom: -30px; right: -30px; transform: rotate(20deg); }
-.deco--rose-corner { top: 10%; right: -40px; width: clamp(90px, 16vw, 160px); opacity: 0.22; }
+.deco--rose-corner { top: 10%; right: -40px; width: clamp(100px, 18vw, 180px); opacity: 0.3; }
 
-.deco--sparkle { width: 34px; height: 34px; opacity: 0.7; }
+.deco--sparkle { width: 40px; height: 40px; opacity: 0.8; filter: drop-shadow(0 0 8px rgba(230, 231, 236, 0.5)); }
 .deco--sparkle-a { top: 12%; left: 8%; animation: twinkle 4.5s ease-in-out infinite; }
 .deco--sparkle-b { bottom: 15%; right: 10%; animation: twinkle 5.5s ease-in-out infinite 0.8s; }
 .deco--sparkle-c { top: 8%; right: 12%; animation: twinkle 5s ease-in-out infinite 0.4s; }
 .deco--sparkle-d { bottom: 10%; left: 9%; animation: twinkle 4.8s ease-in-out infinite 1.2s; }
 
 @keyframes twinkle {
-  0%, 100% { opacity: 0.25; transform: scale(0.85); }
-  50% { opacity: 0.85; transform: scale(1.05); }
+  0%, 100% { opacity: 0.3; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1.08); }
 }
 
+/* Accesorios grandes y llamativos: bolso, zapatilla y perfume — a plena
+   opacidad y con sombra propia para una sensación de volumen/3D. */
 .deco--bag,
-.deco--heel {
-  width: clamp(58px, 11vw, 92px);
-  opacity: 0.4;
+.deco--heel,
+.deco--perfume {
+  opacity: 0.92;
+  filter: drop-shadow(0 18px 26px rgba(0, 0, 0, 0.28));
 }
 
-.deco--bag-tl { top: 6%; left: -14px; transform: rotate(-8deg); }
-.deco--heel-br { bottom: 8%; right: -10px; transform: rotate(6deg); }
+.deco--bag { width: clamp(130px, 24vw, 220px); }
+.deco--heel { width: clamp(150px, 26vw, 240px); }
+.deco--perfume { width: clamp(100px, 18vw, 170px); }
+
+.deco--bag-tl {
+  top: -6%;
+  left: clamp(-30px, -4vw, -10px);
+  transform: rotate(-10deg);
+}
+
+.deco--heel-br {
+  bottom: -4%;
+  right: clamp(-40px, -5vw, -15px);
+  transform: rotate(8deg) scaleX(-1);
+}
+
+.deco--perfume-a {
+  bottom: 2%;
+  left: clamp(-24px, -4vw, -6px);
+  transform: rotate(-6deg);
+}
 
 .deco--pearlloop {
-  width: clamp(70px, 13vw, 110px);
-  opacity: 0.5;
+  width: clamp(90px, 16vw, 130px);
+  opacity: 0.65;
 }
 
 .deco--pearlloop-a { top: 4%; right: 4%; }
+
+/* Versión reducida de bolso/tacón/perfume para acentuar otras secciones
+   sin repetir el mismo tamaño protagonista de Dress Code. */
+.deco--sm {
+  width: clamp(58px, 10vw, 92px) !important;
+  opacity: 0.5 !important;
+  filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.2)) !important;
+}
+
+.deco--heel-fecha { bottom: 4%; left: clamp(-20px, -3vw, -6px); transform: rotate(-10deg); }
+.deco--bag-confirmar { bottom: 3%; left: clamp(-18px, -3vw, -4px); transform: rotate(-8deg); }
+.deco--perfume-ubicacion { bottom: 2%; right: clamp(-16px, -3vw, -2px); transform: rotate(6deg); }
+.deco--bag-cierre { top: 20%; left: clamp(-14px, -2.5vw, 0px); transform: rotate(-10deg); }
+.deco--heel-cierre { top: 24%; right: clamp(-14px, -2.5vw, 0px); transform: rotate(10deg) scaleX(-1); }
 
 /* ==========================================================================
    3. FECHA Y HORA — countdown
@@ -753,11 +820,15 @@ input:focus-visible {
    Botón de música (flotante)
    ========================================================================== */
 
-.music-toggle {
+.music-toggle-wrap {
   position: fixed;
   top: 1.25rem;
   right: 1.25rem;
   z-index: 100;
+}
+
+.music-toggle {
+  position: relative;
   width: 54px;
   height: 54px;
   border-radius: 50%;
@@ -775,6 +846,34 @@ input:focus-visible {
 
 .music-toggle:hover,
 .music-toggle:focus-visible { transform: scale(1.06); background: rgba(11, 11, 13, 0.75); }
+
+.music-toggle__tooltip {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  max-width: 220px;
+  width: max-content;
+  max-width: min(220px, 60vw);
+  padding: 0.55rem 0.85rem;
+  border-radius: 6px;
+  background: rgba(11, 11, 13, 0.92);
+  border: 1px solid rgba(199, 201, 207, 0.3);
+  color: var(--grey-100);
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  text-align: right;
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease-elegant), transform 0.4s var(--ease-elegant);
+}
+
+.music-toggle__tooltip.is-shown {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 .music-toggle__ring {
   position: absolute;
@@ -848,7 +947,8 @@ input:focus-visible {
   .section { padding: 4rem 1.25rem; }
   .countdown { gap: 0.5rem; }
   .countdown__item { padding: 0.75rem 0.25rem; }
-  .music-toggle { width: 48px; height: 48px; top: 1rem; right: 1rem; }
+  .music-toggle-wrap { top: 1rem; right: 1rem; }
+  .music-toggle { width: 48px; height: 48px; }
   .silver-badge { flex-direction: column; text-align: center; padding: 1.5rem 1.25rem; }
   .silver-badge__text { align-items: center; }
   .deco--rose-corner { display: none; }

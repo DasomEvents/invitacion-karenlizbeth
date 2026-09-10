@@ -209,6 +209,7 @@
     var iconPlay = document.getElementById("iconPlay");
     var iconPause = document.getElementById("iconPause");
     var status = document.getElementById("musicStatus");
+    var tooltip = document.getElementById("musicTooltip");
 
     if (!audio || !toggle) return;
 
@@ -216,6 +217,7 @@
 
     var audioUnavailable = false;
     var triedAutoStart = false;
+    var tooltipTimer = null;
 
     function setPlayingUI(isPlaying) {
       toggle.setAttribute("aria-pressed", isPlaying ? "true" : "false");
@@ -228,6 +230,19 @@
       if (status) status.textContent = message;
     }
 
+    // Muestra un mensaje visible junto al botón (no solo para lectores de
+    // pantalla) para que quede claro que el botón SÍ respondió al clic,
+    // incluso cuando party.mp3 todavía no existe.
+    function showTooltip(message) {
+      if (!tooltip) return;
+      tooltip.textContent = message;
+      tooltip.classList.add("is-shown");
+      window.clearTimeout(tooltipTimer);
+      tooltipTimer = window.setTimeout(function () {
+        tooltip.classList.remove("is-shown");
+      }, 3200);
+    }
+
     // Si el archivo party.mp3 todavía no existe, el resto de la página
     // debe seguir funcionando con total normalidad.
     audio.addEventListener("error", function () {
@@ -236,9 +251,10 @@
       announce("La música de fondo no está disponible todavía.");
     });
 
-    function tryPlay(showAnnounce) {
+    function tryPlay(showFeedback) {
       if (audioUnavailable) {
         announce("La música de fondo no está disponible todavía.");
+        if (showFeedback) showTooltip("Música aún no disponible: falta subir audio/party.mp3");
         return;
       }
 
@@ -248,13 +264,14 @@
         playPromise
           .then(function () {
             setPlayingUI(true);
-            if (showAnnounce) announce("Reproduciendo música de fondo.");
+            if (showFeedback) announce("Reproduciendo música de fondo.");
           })
           .catch(function () {
             // El navegador bloqueó el autoplay o el archivo aún no existe.
             setPlayingUI(false);
-            if (showAnnounce) {
+            if (showFeedback) {
               announce("Toca el botón de música para reproducir el audio.");
+              showTooltip("Música aún no disponible: falta subir audio/party.mp3");
             }
           });
       }

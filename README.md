@@ -83,12 +83,14 @@ volumen inicial queda fijo en 50%.
   (`https://wa.me/527712277589`)
 - **Ubicación:** botón "Ver Ubicación" que abre
   `https://maps.app.goo.gl/uTKM4n7M5GJc76nm8` en una pestaña nueva
-- **Fotografías:** `assets/karen-retrato.jpg` como fondo de la sección
-  "Un capítulo digno de celebrarse", y `assets/karen-glam.jpg` en un marco
-  plateado con detalle de perlas en la sección de despedida
+- **Fotografías:** `assets/karen-retrato.jpg` en la sección "Un capítulo
+  digno de celebrarse" (franja de texto arriba, foto completa sin recortar
+  debajo), y `assets/karen-glam.jpg` en un marco plateado con detalle de
+  perlas en la sección de despedida
 - **Frase de Coco Chanel:** "No hago moda, soy la moda" en la sección de
   Dress Code
-- **Decoración adicional:** bolso y tacón ilustrados (silueta propia, sin
+- **Decoración adicional:** bolso, tacón y frasco de perfume ilustrados
+  (silueta propia, sin
   logotipos ni nombres de marca) y un collar de perlas decorativo,
   además de las rosas, destellos y el moño ya existentes
 
