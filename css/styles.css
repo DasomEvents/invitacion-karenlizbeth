@@ -737,22 +737,60 @@ input:focus-visible {
 }
 
 /* Espacio reservado para un logotipo de marca, colocado a mano por la
-   organizadora en assets/chanel-logo.png. Si el archivo no existe, el
-   atributo onerror en el <img> oculta este bloque automáticamente. */
+   organizadora en assets/chanel-logo.png. Mientras ese archivo no
+   exista se ve un recuadro punteado con una leyenda, para dejar claro
+   que el espacio ya está preparado; en cuanto la imagen carga con
+   éxito, el recuadro se retira y se muestra el logotipo solo. */
 .brand-logo-slot {
   display: flex;
   justify-content: center;
   margin: 2.25rem auto 0;
 }
 
+.brand-logo-slot__box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 170px;
+  min-height: 52px;
+  padding: 0.6rem 1.5rem;
+  border: 1px dashed var(--silver-3);
+  border-radius: 4px;
+  background: rgba(143, 145, 152, 0.05);
+  transition: all var(--dur-med) var(--ease-elegant);
+}
+
+.brand-logo-slot__label {
+  font-family: var(--font-sans);
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--grey-500);
+}
+
 .brand-logo-slot__img {
-  max-width: 118px;
-  max-height: 56px;
+  display: none;
+  max-width: 150px;
+  max-height: 60px;
   width: auto;
   height: auto;
-  opacity: 0.8;
+  opacity: 0.85;
   filter: grayscale(1) contrast(1.05);
 }
+
+/* Logotipo cargado con éxito: se retira el recuadro punteado y la
+   leyenda, y se muestra únicamente la imagen. */
+.brand-logo-slot__box.has-logo {
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  border-style: solid;
+  border-color: transparent;
+  background: none;
+}
+
+.brand-logo-slot__box.has-logo .brand-logo-slot__label { display: none; }
+.brand-logo-slot__box.has-logo .brand-logo-slot__img { display: block; }
 
 /* ==========================================================================
    5. CONFIRMAR ASISTENCIA

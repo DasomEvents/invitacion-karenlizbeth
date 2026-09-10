@@ -64,9 +64,12 @@ hasta que subas el archivo.
 
 ## Dónde colocar el logotipo (opcional)
 
-Se dejó un espacio reservado, discreto, dentro de la sección de Dress Code
-para que coloques tú misma un logotipo (por ejemplo el de Chanel) si así lo
-deseas:
+Dentro de la sección de Dress Code, justo debajo del texto, hay un
+recuadro punteado con la leyenda **"Tu logotipo aquí"** — ese es el
+espacio ya preparado para que coloques tú misma un logotipo (por
+ejemplo el de Chanel) si así lo deseas. Lo verás en cuanto abras la
+página, aunque todavía no hayas subido ninguna imagen: es justamente
+la señal de que el espacio está listo.
 
 1. Prepara tu imagen del logotipo, de preferencia en formato **PNG con
    fondo transparente**, en blanco, negro o gris (la página lo muestra
@@ -75,12 +78,8 @@ deseas:
 2. Renómbralo exactamente a `chanel-logo.png` (todo en minúsculas).
 3. Súbelo dentro de la carpeta `assets/` de tu repositorio.
 4. Listo — no necesitas tocar ningún código. En cuanto el archivo exista
-   en `assets/chanel-logo.png`, aparecerá automáticamente como un
-   pequeño acento decorativo debajo del texto de Dress Code.
-
-Mientras ese archivo no exista, ese espacio permanece invisible y el
-resto de la página funciona con total normalidad — no verás ningún
-recuadro vacío ni error.
+   en `assets/chanel-logo.png`, el recuadro punteado desaparece solo y
+   en su lugar se muestra tu logotipo.
 
 **Nota sobre autoplay:** los navegadores modernos no permiten reproducir
 audio con sonido automáticamente sin que la persona interactúe primero con

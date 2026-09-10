@@ -378,11 +378,18 @@
 
       <p class="fine-print reveal" data-reveal style="--d:0.34s">Te pedimos amablemente reservar los tonos plateados para la festejada. ¡Gracias por celebrar con estilo!</p>
 
-      <!-- Espacio reservado para el logotipo de marca (se coloca manualmente).
-           Si assets/chanel-logo.png no existe, este bloque se oculta solo
-           y el resto de la página sigue funcionando con normalidad. -->
+      <!-- Espacio reservado para el logotipo de marca (lo colocas tú).
+           Mientras assets/chanel-logo.png no exista, se ve este recuadro
+           punteado con la leyenda "Tu logotipo aquí" para que quede claro
+           que el espacio ya está listo. En cuanto subas esa imagen, el
+           recuadro desaparece solo y se muestra tu logotipo en su lugar. -->
       <div class="brand-logo-slot reveal" data-reveal style="--d:0.42s">
-        <img src="assets/chanel-logo.png" alt="" class="brand-logo-slot__img" onerror="this.closest('.brand-logo-slot').style.display='none'">
+        <div class="brand-logo-slot__box" id="brandLogoBox">
+          <img src="assets/chanel-logo.png" alt="Logotipo" class="brand-logo-slot__img"
+               onload="document.getElementById('brandLogoBox').classList.add('has-logo')"
+               onerror="document.getElementById('brandLogoBox').classList.add('is-empty')">
+          <span class="brand-logo-slot__label">Tu logotipo aquí</span>
+        </div>
       </div>
     </div>
   </section>

@@ -232,14 +232,14 @@
     }
 
     function createParticles() {
-      var count = Math.min(120, Math.round((width * height) / 13000));
+      var count = Math.min(150, Math.round((width * height) / 9500));
       particles = [];
       for (var i = 0; i < count; i++) {
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          s: Math.random() * 2.6 + 1.5,
-          baseAlpha: Math.random() * 0.4 + 0.28,
+          s: Math.random() * 3.6 + 2.6,
+          baseAlpha: Math.random() * 0.35 + 0.55,
           phase: Math.random() * Math.PI * 2,
           speed: Math.random() * 0.6 + 0.2,
           driftY: -(Math.random() * 0.05 + 0.012),
@@ -249,26 +249,55 @@
       }
     }
 
+    // Destello tipo diamante con doble contraste: un halo oscuro suave
+    // por debajo (para leerse sobre fondos claros) y un núcleo
+    // plateado/blanco brillante encima (para leerse sobre fondos
+    // oscuros), más un contorno definido para que nunca se pierda.
     function drawDiamond(p, alpha) {
       var s = p.s;
       ctx.save();
       ctx.translate(p.x, p.y);
       ctx.rotate(p.rot);
+
       ctx.beginPath();
-      ctx.moveTo(0, -s * 2.1);
-      ctx.lineTo(s * 0.6, 0);
-      ctx.lineTo(0, s * 2.1);
-      ctx.lineTo(-s * 0.6, 0);
+      ctx.moveTo(0, -s * 2.3);
+      ctx.lineTo(s * 0.65, 0);
+      ctx.lineTo(0, s * 2.3);
+      ctx.lineTo(-s * 0.65, 0);
       ctx.closePath();
+
+      // Halo oscuro de contraste, se pinta primero y se difumina hacia
+      // afuera (visible sobre fondos claros como el marfil/blanco).
       ctx.globalAlpha = alpha;
-      ctx.shadowColor = "rgba(140, 142, 150, 0.55)";
-      ctx.shadowBlur = s * 2.4;
-      ctx.fillStyle = "rgba(255, 255, 255, 0.95)";
+      ctx.shadowColor = "rgba(30, 30, 34, 0.9)";
+      ctx.shadowBlur = s * 2;
+      ctx.fillStyle = "rgba(30, 30, 34, 0.9)";
       ctx.fill();
+
+      // Núcleo plateado/blanco brillante, se pinta encima y cubre el
+      // relleno oscuro por completo; su propio resplandor se lee sobre
+      // fondos oscuros.
+      ctx.shadowColor = "rgba(255, 255, 255, 0.95)";
+      ctx.shadowBlur = s * 2.8;
+      ctx.fillStyle = "#ffffff";
+      ctx.fill();
+
+      // Contorno definido, para que nunca se pierda sobre ningún fondo.
       ctx.shadowBlur = 0;
-      ctx.lineWidth = 0.6;
-      ctx.strokeStyle = "rgba(70, 70, 78, 0.4)";
+      ctx.lineWidth = Math.max(0.8, s * 0.14);
+      ctx.strokeStyle = "rgba(90, 90, 98, 0.75)";
       ctx.stroke();
+
+      // Destello central puntual, más pequeño y más opaco.
+      ctx.beginPath();
+      ctx.moveTo(0, -s * 0.9);
+      ctx.lineTo(s * 0.22, 0);
+      ctx.lineTo(0, s * 0.9);
+      ctx.lineTo(-s * 0.22, 0);
+      ctx.closePath();
+      ctx.fillStyle = "rgba(255, 255, 255, 0.98)";
+      ctx.fill();
+
       ctx.restore();
     }
 
