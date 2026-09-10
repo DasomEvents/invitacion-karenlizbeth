@@ -80,37 +80,67 @@ input:focus-visible {
 .section--light { background: var(--ivory); color: var(--charcoal); }
 .section--dark  { background: linear-gradient(180deg, var(--black) 0%, #121113 100%); color: var(--grey-100); }
 
-.section--presentacion {
-  padding: 0;
-  background: var(--ivory);
+/* La fotografía llena toda la sección como fondo (igual que la portada
+   y Dress Code); encima va un pequeño recuadro negro con el texto,
+   colocado arriba para no tapar nada de la cara. */
+.section--presentacion-bg {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: clamp(1.1rem, 4vw, 1.75rem) 1.25rem 3rem;
+  background-image: url("../assets/karen-retrato.jpg");
+  background-size: cover;
+  background-position: center 14%;
+  background-repeat: no-repeat;
 }
 
-/* Franja sólida arriba, a modo de encabezado editorial — el resto de la
-   foto queda completa y sin recortar debajo. */
-.presentacion-strip {
+/* Recuadro compacto (mismo espíritu que la tarjeta "Black & White" de
+   Dress Code): solo el título de la sección y la firma, lo justo para
+   que quepa en la franja blanca de arriba sin tocar la cara. */
+.presentacion-card {
   position: relative;
   z-index: 2;
-  background: var(--ivory);
+  width: 100%;
+  max-width: 400px;
+  background: var(--black);
+  color: var(--white);
   text-align: center;
-  padding: clamp(2.4rem, 9vw, 3.6rem) 1.5rem clamp(1.8rem, 6vw, 2.6rem);
-  box-shadow: 0 12px 30px -18px rgba(0, 0, 0, 0.3);
+  padding: clamp(1.2rem, 4.5vw, 1.7rem) 1.4rem;
+  border-radius: 2px;
+  box-shadow: 0 20px 45px -18px rgba(0, 0, 0, 0.55);
 }
 
-.presentacion-strip .kicker,
-.presentacion-strip .lead,
-.presentacion-strip .signature { max-width: 34ch; margin-left: auto; margin-right: auto; }
+.presentacion-card::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(199, 201, 207, 0.3);
+  pointer-events: none;
+}
 
-.presentacion-photo {
+.presentacion-card__main {
   position: relative;
-  z-index: 2;
-  width: 100%;
-  line-height: 0;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(1.3rem, 5.4vw, 1.8rem);
+  line-height: 1.25;
+  margin: 0;
+  letter-spacing: 0.01em;
 }
 
-.presentacion-img {
-  display: block;
-  width: 100%;
-  height: auto;
+.presentacion-card__sub {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(0.92rem, 3vw, 1.05rem);
+  color: var(--silver-2);
+  margin: 0.55rem 0 0;
 }
 
 .container {
@@ -397,12 +427,6 @@ input:focus-visible {
   color: var(--grey-100);
   margin: 0.75rem 0 0;
   letter-spacing: 0.02em;
-}
-
-.hero__bow {
-  width: clamp(110px, 24vw, 152px);
-  margin: 2rem auto 1.5rem;
-  filter: drop-shadow(0 10px 22px rgba(0,0,0,0.45));
 }
 
 .hero__meta {
@@ -876,65 +900,55 @@ input:focus-visible {
    7. CIERRE
    ========================================================================== */
 
-/* Misma estructura que la sección "Un capítulo digno de celebrarse":
-   una franja sólida con el texto (aquí negra, para que resalte) y,
-   debajo, la fotografía completa de la cumpleañera, sin recortar y sin
-   que la franja le tape nada. */
-.section--closing-photo {
-  padding: 0;
-  background: var(--black);
-}
-
-.closing-strip {
+/* La fotografía llena toda la sección como fondo (más grande, sin franja
+   ni adorno encima). El texto va directamente en negro sobre la zona
+   blanca de la foto, a un lado de la cumpleañera. */
+.section--closing-bg {
   position: relative;
-  z-index: 2;
-  background: var(--black);
-  color: var(--white);
-  text-align: center;
-  padding: clamp(2.8rem, 10vw, 4rem) 1.5rem clamp(2rem, 7vw, 2.8rem);
-  box-shadow: 0 12px 30px -18px rgba(0, 0, 0, 0.6);
+  min-height: 100svh;
+  background-image: url("../assets/karen-glam.jpg");
+  background-size: cover;
+  background-position: center 12%;
+  background-repeat: no-repeat;
 }
 
-.closing-strip .hero__bow {
-  width: clamp(96px, 20vw, 132px);
-  margin: 0 auto 1.4rem;
+.closing-text {
+  position: absolute;
+  z-index: 2;
+  top: 13%;
+  right: 6%;
+  max-width: 44%;
+  text-align: right;
 }
 
 .closing__title {
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 600;
-  font-size: clamp(2.4rem, 8vw, 3.6rem);
-  color: var(--white);
+  font-size: clamp(1.9rem, 7vw, 3rem);
+  color: var(--black);
   margin: 0;
 }
 
 .closing__sub {
   font-family: var(--font-sans);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  font-size: 0.85rem;
-  color: var(--grey-300);
-  margin: 1rem 0 0.4rem;
+  font-size: clamp(0.68rem, 2.4vw, 0.8rem);
+  color: var(--charcoal);
+  margin: 0.85rem 0 0.35rem;
 }
 
 .closing__date {
-  font-size: 0.85rem;
-  color: var(--grey-500);
+  font-size: clamp(0.7rem, 2.4vw, 0.8rem);
+  color: var(--grey-700);
   margin: 0;
 }
 
-.closing-photo-wrap {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  line-height: 0;
-}
-
-.closing-photo-full {
-  display: block;
-  width: 100%;
-  height: auto;
+.closing__title,
+.closing__sub,
+.closing__date {
+  text-shadow: 0 2px 16px rgba(255, 255, 255, 0.9), 0 1px 4px rgba(255, 255, 255, 0.95);
 }
 
 /* ==========================================================================
@@ -1072,7 +1086,7 @@ input:focus-visible {
 
 /* La portada revela sola al cargar, sin esperar scroll */
 .section--hero .reveal,
-.section--closing-photo .reveal {
+.section--closing-bg .reveal {
   transition-delay: var(--d, 0s);
 }
 

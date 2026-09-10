@@ -132,16 +132,17 @@ queda fijo en 50%.
 - **Ubicación:** dirección en texto ("Av. Primero de mayo 38, El
   saucillo, Pachuca, Hgo.") y botón "Ver Ubicación" que abre
   `https://maps.app.goo.gl/uTKM4n7M5GJc76nm8` en una pestaña nueva
-- **Fotografías:**
-  - `assets/hero-bg.jpg` como fondo de toda la portada
-  - `assets/dresscode-bg.jpg` como fondo de toda la sección Dress Code
-  - `assets/karen-retrato.jpg` en la sección "Un capítulo digno de
-    celebrarse" (franja de texto arriba, foto completa sin recortar
-    debajo)
-  - `assets/karen-glam.jpg` como fondo completo de la sección de
-    despedida (franja negra con el texto arriba, foto completa sin
-    recortar debajo — misma estructura que "Un capítulo digno de
-    celebrarse")
+- **Fotografías:** las cuatro secciones con foto la usan como fondo
+  completo, llenando toda la sección:
+  - `assets/hero-bg.jpg` en la portada
+  - `assets/dresscode-bg.jpg` en Dress Code
+  - `assets/karen-retrato.jpg` en "Un capítulo digno de celebrarse", con
+    un recuadro negro pequeño y compacto (mismo estilo que la tarjeta
+    "Black & White" de Dress Code) colocado arriba, en la parte blanca
+    de la foto, sin tapar nada de la cara
+  - `assets/karen-glam.jpg` en la sección de despedida, con el texto
+    directamente en negro (sin recuadro) a un lado de la cumpleañera,
+    también sobre la parte blanca de la foto
 - **Frase de Coco Chanel:** "No hago moda, soy la moda" en la sección de
   Dress Code
 - **Decoración adicional:** un collar de perlas decorativo, las rosas
@@ -190,7 +191,13 @@ Todos se encuentran comentados y organizados por sección dentro de
   `assets/karen-glam.jpg` por otra imagen con el mismo nombre de archivo
   (o cambia el nombre en `index.html`/`css/styles.css` si usas uno
   distinto). Se recomienda un tamaño similar (900–1000px de ancho) para
-  que el sitio siga cargando rápido.
+  que el sitio siga cargando rápido. Ambas son el fondo completo de su
+  sección (`.section--presentacion-bg` y `.section--closing-bg` en
+  `css/styles.css`); si usas una foto nueva donde la persona quede en
+  otra posición, puede que necesites ajustar `background-position` ahí
+  mismo, y — en "Un capítulo digno de celebrarse" — la posición del
+  recuadro negro (`.presentacion-card`) o — en la despedida — la del
+  texto (`.closing-text`), para que sigan sin tapar la cara.
 - **Fondos fotográficos de la portada y de Dress Code** — reemplaza
   `assets/hero-bg.jpg` o `assets/dresscode-bg.jpg` por otra imagen con
   el mismo nombre (se recomienda un tamaño similar, alrededor de

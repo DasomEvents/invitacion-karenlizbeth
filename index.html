@@ -237,22 +237,13 @@
   </section>
 
   <!-- ============ 2. PRESENTACIÓN ============ -->
-  <section id="presentacion" class="section section--presentacion" aria-label="Presentación del cumpleaños">
-    <div class="presentacion-strip reveal" data-reveal>
-      <p class="kicker">Un capítulo digno de celebrarse</p>
-      <p class="lead">
-        Te invito a celebrar este momento especial en mi vida.<br>
-        ¡Será una noche inolvidable!
-      </p>
-      <div class="ornament" aria-hidden="true">
-        <span class="ornament__line"></span>
-        <svg class="ornament__sparkle" viewBox="0 0 40 40"><use href="#sparkle"/></svg>
-        <span class="ornament__line"></span>
-      </div>
-      <p class="signature">— Karen Lizbeth</p>
-    </div>
-    <div class="presentacion-photo">
-      <img src="assets/karen-retrato.jpg" alt="Karen Lizbeth lista para celebrar sus 40 años" class="presentacion-img">
+  <!-- La foto ocupa toda la sección como fondo; el texto va dentro de un
+       recuadro negro pequeño (mismo estilo que la tarjeta "Black & White"
+       de Dress Code), colocado arriba, sin tapar nada de la cara. -->
+  <section id="presentacion" class="section section--presentacion-bg" aria-label="Presentación del cumpleaños">
+    <div class="presentacion-card reveal" data-reveal>
+      <p class="presentacion-card__main">Un capítulo digno de celebrarse</p>
+      <p class="presentacion-card__sub">— Karen Lizbeth</p>
     </div>
   </section>
 
@@ -411,21 +402,14 @@
   </section>
 
   <!-- ============ 7. CIERRE ============ -->
-  <!-- Misma estructura que "Un capítulo digno de celebrarse": una franja
-       sólida (aquí negra, para que el texto resalte) y, debajo, la foto
-       de la cumpleañera completa y sin recortar. La franja no tapa nada
-       de la fotografía. -->
-  <section id="cierre" class="section section--closing-photo" aria-label="Despedida">
-    <div class="closing-strip reveal" data-reveal>
-      <div class="hero__bow" aria-hidden="true">
-        <svg viewBox="0 0 36 36"><use href="#ribbonBow"/></svg>
-      </div>
+  <!-- La foto llena toda la sección como fondo; el texto va directamente
+       en negro sobre la zona blanca de la foto, a un lado de la
+       cumpleañera, sin recuadro ni adorno encima. -->
+  <section id="cierre" class="section section--closing-bg" aria-label="Despedida">
+    <div class="closing-text reveal" data-reveal>
       <p class="closing__title">¡Te espero!</p>
       <p class="closing__sub">Karen Lizbeth · Mis 40 años</p>
       <p class="closing__date">17 de octubre de 2026 — Jardín La Villa</p>
-    </div>
-    <div class="closing-photo-wrap">
-      <img src="assets/karen-glam.jpg" alt="Karen Lizbeth lista para celebrar sus 40 años" class="closing-photo-full">
     </div>
   </section>
 
