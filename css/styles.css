@@ -915,9 +915,10 @@ input:focus-visible {
 .closing-text {
   position: absolute;
   z-index: 2;
-  top: 13%;
-  right: 6%;
-  max-width: 44%;
+  top: 43%;
+  transform: translateY(-50%);
+  right: 5%;
+  max-width: 42%;
   text-align: right;
 }
 
@@ -925,7 +926,7 @@ input:focus-visible {
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 600;
-  font-size: clamp(1.9rem, 7vw, 3rem);
+  font-size: clamp(1.5rem, 5.6vw, 2.6rem);
   color: var(--black);
   margin: 0;
 }
