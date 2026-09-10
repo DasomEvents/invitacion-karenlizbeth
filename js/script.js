@@ -200,6 +200,118 @@
   initParticles("particles2");
 
   /* ------------------------------------------------------------------ *
+   * 4b) Capa de brillos de fondo para TODA la página: un canvas fijo
+   *     (viewport) con destellos tipo diamante, detrás del texto y
+   *     encima de los fondos de sección. Se omite con
+   *     prefers-reduced-motion.
+   * ------------------------------------------------------------------ */
+  (function initGlobalSparkles() {
+    var canvas = document.getElementById("globalSparkles");
+    if (!canvas || !canvas.getContext) return;
+
+    if (prefersReducedMotion) {
+      canvas.style.display = "none";
+      return;
+    }
+
+    var ctx = canvas.getContext("2d");
+    var particles = [];
+    var width, height, dpr;
+    var rafId = null;
+    var running = true;
+
+    function resize() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      canvas.style.width = width + "px";
+      canvas.style.height = height + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function createParticles() {
+      var count = Math.min(120, Math.round((width * height) / 13000));
+      particles = [];
+      for (var i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          s: Math.random() * 2.6 + 1.5,
+          baseAlpha: Math.random() * 0.4 + 0.28,
+          phase: Math.random() * Math.PI * 2,
+          speed: Math.random() * 0.6 + 0.2,
+          driftY: -(Math.random() * 0.05 + 0.012),
+          driftX: (Math.random() - 0.5) * 0.035,
+          rot: Math.random() * Math.PI
+        });
+      }
+    }
+
+    function drawDiamond(p, alpha) {
+      var s = p.s;
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.beginPath();
+      ctx.moveTo(0, -s * 2.1);
+      ctx.lineTo(s * 0.6, 0);
+      ctx.lineTo(0, s * 2.1);
+      ctx.lineTo(-s * 0.6, 0);
+      ctx.closePath();
+      ctx.globalAlpha = alpha;
+      ctx.shadowColor = "rgba(140, 142, 150, 0.55)";
+      ctx.shadowBlur = s * 2.4;
+      ctx.fillStyle = "rgba(255, 255, 255, 0.95)";
+      ctx.fill();
+      ctx.shadowBlur = 0;
+      ctx.lineWidth = 0.6;
+      ctx.strokeStyle = "rgba(70, 70, 78, 0.4)";
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    function draw(time) {
+      if (!running) return;
+      ctx.clearRect(0, 0, width, height);
+
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        var twinkle = Math.sin(time * 0.001 * p.speed * 3 + p.phase) * 0.5 + 0.5;
+        var alpha = p.baseAlpha * (0.45 + twinkle * 0.55);
+
+        p.x += p.driftX;
+        p.y += p.driftY;
+
+        if (p.y < -6) p.y = height + 6;
+        if (p.x < -6) p.x = width + 6;
+        if (p.x > width + 6) p.x = -6;
+
+        drawDiamond(p, alpha);
+      }
+
+      rafId = window.requestAnimationFrame(draw);
+    }
+
+    resize();
+    createParticles();
+    rafId = window.requestAnimationFrame(draw);
+
+    window.addEventListener("resize", function () {
+      resize();
+      createParticles();
+    });
+
+    document.addEventListener("visibilitychange", function () {
+      running = !document.hidden;
+      if (running && rafId === null) {
+        rafId = window.requestAnimationFrame(draw);
+      }
+    });
+  })();
+
+  /* ------------------------------------------------------------------ *
    * 5) Música de fondo: play/pause, volumen inicial 50%,
    *    manejo elegante de restricciones de autoplay y de archivo ausente.
    * ------------------------------------------------------------------ */

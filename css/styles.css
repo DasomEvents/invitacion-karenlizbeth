@@ -101,6 +101,8 @@ input:focus-visible {
 .presentacion-strip .signature { max-width: 34ch; margin-left: auto; margin-right: auto; }
 
 .presentacion-photo {
+  position: relative;
+  z-index: 2;
   width: 100%;
   line-height: 0;
 }
@@ -158,6 +160,15 @@ input:focus-visible {
 }
 
 .lead--light { color: var(--grey-300); }
+
+.gift-note {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--grey-300);
+  max-width: 36ch;
+  margin: -0.8rem auto 1.9rem;
+}
 
 .fine-print {
   font-size: 0.85rem;
@@ -379,6 +390,20 @@ input:focus-visible {
   filter: drop-shadow(0 10px 22px rgba(0,0,0,0.45));
 }
 
+/* Listón de satín de ancho completo (portada), inspirado en la referencia. */
+.hero__ribbon {
+  width: clamp(230px, 68vw, 560px);
+  margin: 1.9rem auto 1.6rem;
+  filter: drop-shadow(0 12px 26px rgba(0, 0, 0, 0.5));
+}
+
+.hero__ribbon svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 800 / 160;
+}
+
 .hero__meta {
   font-family: var(--font-sans);
   font-size: clamp(1rem, 3.6vw, 1.05rem);
@@ -441,7 +466,22 @@ input:focus-visible {
   flex-shrink: 0;
 }
 
-.pearl-row--top { margin-top: -1.5rem; margin-bottom: 2.2rem; opacity: 0.95; }
+/* En la portada, la tira de perlas cuelga en diagonal desde la esquina
+   superior izquierda (referencia del PDF) en lugar de flotar centrada. */
+.pearl-row--top {
+  position: absolute;
+  top: clamp(-14px, -1.5vw, 6px);
+  left: clamp(-56px, -7vw, -18px);
+  width: min(60vw, 400px);
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  transform: rotate(26deg);
+  transform-origin: top left;
+  opacity: 0.92;
+  z-index: 1;
+}
+
 .pearl-row--thin { max-width: 560px; margin-bottom: 3rem; }
 
 .pearl-row svg { display: block; width: 100%; height: auto; }
@@ -459,14 +499,31 @@ input:focus-visible {
 
 .deco--rose { width: clamp(90px, 16vw, 170px); opacity: 0.45; }
 .deco--rose-tl { top: -20px; left: -30px; }
+.deco--rose-tr { top: -18px; right: -32px; transform: rotate(-18deg) scaleX(-1); }
 .deco--rose-br { bottom: -30px; right: -30px; transform: rotate(20deg); }
 .deco--rose-corner { top: 10%; right: -40px; width: clamp(100px, 18vw, 180px); opacity: 0.3; }
+
+/* Clúster de rosa oscura, esquina inferior izquierda de la portada. */
+.deco--rose-dark { opacity: 0.6; }
+.deco--rose-dark-bl {
+  bottom: -14px;
+  left: -26px;
+  width: clamp(110px, 19vw, 195px);
+  transform: rotate(-8deg);
+}
 
 .deco--sparkle { width: 40px; height: 40px; opacity: 0.8; filter: drop-shadow(0 0 8px rgba(230, 231, 236, 0.5)); }
 .deco--sparkle-a { top: 12%; left: 8%; animation: twinkle 4.5s ease-in-out infinite; }
 .deco--sparkle-b { bottom: 15%; right: 10%; animation: twinkle 5.5s ease-in-out infinite 0.8s; }
 .deco--sparkle-c { top: 8%; right: 12%; animation: twinkle 5s ease-in-out infinite 0.4s; }
 .deco--sparkle-d { bottom: 10%; left: 9%; animation: twinkle 4.8s ease-in-out infinite 1.2s; }
+
+/* Destellos extra en la portada, agrupados cerca de perlas y rosas para
+   una composición más densa, al estilo de la referencia. */
+.deco--sparkle-hero-a { top: 5%; left: 30%; width: 26px; height: 26px; animation: twinkle 4.2s ease-in-out infinite 0.15s; }
+.deco--sparkle-hero-b { top: 16%; right: 22%; width: 22px; height: 22px; animation: twinkle 5.1s ease-in-out infinite 0.55s; }
+.deco--sparkle-hero-c { bottom: 20%; left: 16%; width: 24px; height: 24px; animation: twinkle 4.7s ease-in-out infinite 0.9s; }
+.deco--sparkle-hero-d { bottom: 8%; right: 15%; width: 20px; height: 20px; animation: twinkle 5.4s ease-in-out infinite 1.3s; }
 
 @keyframes twinkle {
   0%, 100% { opacity: 0.3; transform: scale(0.85); }
@@ -677,6 +734,24 @@ input:focus-visible {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--grey-700);
+}
+
+/* Espacio reservado para un logotipo de marca, colocado a mano por la
+   organizadora en assets/chanel-logo.png. Si el archivo no existe, el
+   atributo onerror en el <img> oculta este bloque automáticamente. */
+.brand-logo-slot {
+  display: flex;
+  justify-content: center;
+  margin: 2.25rem auto 0;
+}
+
+.brand-logo-slot__img {
+  max-width: 118px;
+  max-height: 56px;
+  width: auto;
+  height: auto;
+  opacity: 0.8;
+  filter: grayscale(1) contrast(1.05);
 }
 
 /* ==========================================================================
@@ -897,6 +972,16 @@ input:focus-visible {
 
 .music-icon { width: 20px; height: 20px; }
 
+/* Capa de brillos de fondo (toda la página, detrás del texto) */
+.global-sparkles {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
 /* Barra de progreso de scroll */
 .scroll-progress {
   position: fixed;
@@ -978,4 +1063,5 @@ input:focus-visible {
   }
 
   .particles { display: none; }
+  .global-sparkles { display: none; }
 }

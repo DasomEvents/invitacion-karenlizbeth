@@ -62,6 +62,26 @@ Mientras `party.mp3` no exista, el resto de la invitación funciona con
 total normalidad — el botón de música simplemente no reproducirá sonido
 hasta que subas el archivo.
 
+## Dónde colocar el logotipo (opcional)
+
+Se dejó un espacio reservado, discreto, dentro de la sección de Dress Code
+para que coloques tú misma un logotipo (por ejemplo el de Chanel) si así lo
+deseas:
+
+1. Prepara tu imagen del logotipo, de preferencia en formato **PNG con
+   fondo transparente**, en blanco, negro o gris (la página lo muestra
+   automáticamente en escala de grises para que combine con la paleta).
+   Un ancho de **300–500px** es más que suficiente.
+2. Renómbralo exactamente a `chanel-logo.png` (todo en minúsculas).
+3. Súbelo dentro de la carpeta `assets/` de tu repositorio.
+4. Listo — no necesitas tocar ningún código. En cuanto el archivo exista
+   en `assets/chanel-logo.png`, aparecerá automáticamente como un
+   pequeño acento decorativo debajo del texto de Dress Code.
+
+Mientras ese archivo no exista, ese espacio permanece invisible y el
+resto de la página funciona con total normalidad — no verás ningún
+recuadro vacío ni error.
+
 **Nota sobre autoplay:** los navegadores modernos no permiten reproducir
 audio con sonido automáticamente sin que la persona interactúe primero con
 la página. Por eso, en cuanto el invitado hace clic, toca la pantalla o
@@ -92,7 +112,15 @@ volumen inicial queda fijo en 50%.
 - **Decoración adicional:** bolso, tacón y frasco de perfume ilustrados
   (silueta propia, sin
   logotipos ni nombres de marca) y un collar de perlas decorativo,
-  además de las rosas, destellos y el moño ya existentes
+  además de las rosas (incluida una variante oscura), el listón de satín
+  de la portada y los destellos ya existentes
+- **Regalos:** en la sección de confirmación se mantiene la frase "Tu
+  presencia es el mejor regalo" y se añadió una línea aclarando que
+  cualquier detalle también es bienvenido
+- **Brillos de fondo:** una capa sutil de destellos tipo diamante cubre
+  toda la página (detrás del texto, encima de los fondos de cada
+  sección) y respeta automáticamente la preferencia de "reducir
+  movimiento" del sistema operativo del invitado
 
 ## Elementos que puedes modificar fácilmente en el futuro
 

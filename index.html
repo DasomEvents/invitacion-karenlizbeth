@@ -45,6 +45,18 @@
       <stop offset="55%" stop-color="#ffffff" stop-opacity="0.15"/>
       <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
     </radialGradient>
+    <linearGradient id="satinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#f5f4f1"/>
+      <stop offset="55%" stop-color="#e1dfd9"/>
+      <stop offset="80%" stop-color="#f8f7f4"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+    <linearGradient id="darkRoseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4a4a4d"/>
+      <stop offset="45%" stop-color="#28282a"/>
+      <stop offset="100%" stop-color="#0f0f10"/>
+    </linearGradient>
 
     <!-- perla individual -->
     <symbol id="pearl" viewBox="0 0 40 40">
@@ -71,6 +83,20 @@
       <circle cx="60" cy="60" r="4" fill="url(#silverGrad)"/>
     </symbol>
 
+    <!-- variante oscura de la rosa, para el clúster inferior de la portada -->
+    <symbol id="roseDark" viewBox="0 0 120 120">
+      <g fill="none" stroke="url(#darkRoseGrad)" stroke-width="1.4" stroke-linecap="round">
+        <circle cx="60" cy="60" r="10"/>
+        <path d="M60 50 C48 46 42 34 50 24 C58 34 58 44 60 50 Z"/>
+        <path d="M60 50 C72 46 78 34 70 24 C62 34 62 44 60 50 Z"/>
+        <path d="M60 62 C46 64 34 74 34 88 C48 84 56 74 60 62 Z"/>
+        <path d="M60 62 C74 64 86 74 86 88 C72 84 64 74 60 62 Z"/>
+        <path d="M50 58 C36 56 24 60 16 70 C28 74 40 72 50 58 Z"/>
+        <path d="M70 58 C84 56 96 60 104 70 C92 74 80 72 70 58 Z"/>
+      </g>
+      <circle cx="60" cy="60" r="4" fill="url(#darkRoseGrad)"/>
+    </symbol>
+
     <!-- moño / listón, referencia a la portada del PDF -->
     <symbol id="bow" viewBox="0 0 200 110">
       <g fill="url(#silverGrad)" stroke="#ffffff" stroke-opacity="0.35" stroke-width="0.5">
@@ -79,6 +105,22 @@
         <circle cx="100" cy="55" r="13" fill="#f7f7f8"/>
       </g>
       <circle cx="100" cy="55" r="6" fill="url(#silverGrad)"/>
+    </symbol>
+
+    <!-- listón de satín de ancho completo con centro enjoyado, para la
+         franja de la portada al estilo de la referencia -->
+    <symbol id="bowSatin" viewBox="0 0 800 160">
+      <g fill="url(#satinGrad)" stroke="#ffffff" stroke-opacity="0.5" stroke-width="0.8">
+        <path d="M400 80 L54 34 C18 28 4 58 28 76 L344 80 L28 84 C4 102 18 132 54 126 L400 80 Z"/>
+        <path d="M400 80 L746 34 C782 28 796 58 772 76 L456 80 L772 84 C796 102 782 132 746 126 L400 80 Z"/>
+      </g>
+      <path d="M400 80 L340 46 C320 36 296 52 306 72 L400 80 Z" fill="url(#silverGrad)" opacity="0.9"/>
+      <path d="M400 80 L460 46 C480 36 504 52 494 72 L400 80 Z" fill="url(#silverGrad)" opacity="0.9"/>
+      <circle cx="400" cy="80" r="30" fill="url(#pearlGrad)"/>
+      <circle cx="400" cy="80" r="30" fill="none" stroke="url(#silverGrad)" stroke-width="2.4"/>
+      <circle cx="400" cy="80" r="9" fill="url(#silverGrad)"/>
+      <use href="#sparkle" x="372" y="52" width="20" height="20"/>
+      <use href="#sparkle" x="410" y="96" width="16" height="16"/>
     </symbol>
 
     <!-- bolso de compras elegante, con listón — silueta propia, sin logotipo ni marca.
@@ -153,6 +195,10 @@
 </div>
 <p id="musicStatus" class="sr-only" role="status" aria-live="polite"></p>
 
+<!-- Capa de brillos de fondo: cubre toda la página (detrás del texto,
+     encima de los fondos de sección). Se omite con prefers-reduced-motion. -->
+<canvas id="globalSparkles" class="global-sparkles" aria-hidden="true"></canvas>
+
 <!-- Indicador de progreso de scroll (sutil, hilo plateado) -->
 <div class="scroll-progress" aria-hidden="true"><div id="scrollProgressBar" class="scroll-progress__bar"></div></div>
 
@@ -178,7 +224,14 @@
     </div>
 
     <svg class="deco deco--rose deco--rose-tl" viewBox="0 0 120 120" aria-hidden="true"><use href="#rose"/></svg>
+    <svg class="deco deco--rose deco--rose-tr" viewBox="0 0 120 120" aria-hidden="true"><use href="#rose"/></svg>
+    <svg class="deco deco--rose deco--rose-dark deco--rose-dark-bl" viewBox="0 0 120 120" aria-hidden="true"><use href="#roseDark"/></svg>
     <svg class="deco deco--rose deco--rose-br" viewBox="0 0 120 120" aria-hidden="true"><use href="#rose"/></svg>
+
+    <svg class="deco deco--sparkle deco--sparkle-hero-a" viewBox="0 0 40 40" aria-hidden="true"><use href="#sparkle"/></svg>
+    <svg class="deco deco--sparkle deco--sparkle-hero-b" viewBox="0 0 40 40" aria-hidden="true"><use href="#sparkle"/></svg>
+    <svg class="deco deco--sparkle deco--sparkle-hero-c" viewBox="0 0 40 40" aria-hidden="true"><use href="#sparkle"/></svg>
+    <svg class="deco deco--sparkle deco--sparkle-hero-d" viewBox="0 0 40 40" aria-hidden="true"><use href="#sparkle"/></svg>
 
     <div class="hero__content">
       <p class="eyebrow reveal" data-reveal>Tienes una invitación especial</p>
@@ -190,8 +243,8 @@
       </div>
       <p class="hero__subtitle reveal" data-reveal style="--d:0.28s">Mis 40 años</p>
 
-      <div class="hero__bow reveal" data-reveal style="--d:0.4s" aria-hidden="true">
-        <svg viewBox="0 0 200 110"><use href="#bow"/></svg>
+      <div class="hero__ribbon reveal" data-reveal style="--d:0.4s" aria-hidden="true">
+        <svg viewBox="0 0 800 160"><use href="#bowSatin"/></svg>
       </div>
 
       <div class="hero__meta reveal" data-reveal style="--d:0.52s">
@@ -324,6 +377,13 @@
       </div>
 
       <p class="fine-print reveal" data-reveal style="--d:0.34s">Te pedimos amablemente reservar los tonos plateados para la festejada. ¡Gracias por celebrar con estilo!</p>
+
+      <!-- Espacio reservado para el logotipo de marca (se coloca manualmente).
+           Si assets/chanel-logo.png no existe, este bloque se oculta solo
+           y el resto de la página sigue funcionando con normalidad. -->
+      <div class="brand-logo-slot reveal" data-reveal style="--d:0.42s">
+        <img src="assets/chanel-logo.png" alt="" class="brand-logo-slot__img" onerror="this.closest('.brand-logo-slot').style.display='none'">
+      </div>
     </div>
   </section>
 
@@ -338,6 +398,7 @@
       <p class="kicker kicker--light reveal" data-reveal>Tu presencia es el mejor regalo</p>
       <h2 class="section-title section-title--light reveal" data-reveal style="--d:0.08s">Confirma tu asistencia</h2>
       <p class="lead lead--light reveal" data-reveal style="--d:0.16s">Escribe tu nombre y confírmame por WhatsApp que nos acompañarás.</p>
+      <p class="gift-note reveal" data-reveal style="--d:0.2s">Aunque, si deseas obsequiarme algo, cualquier detalle será recibido con mucho cariño.</p>
 
       <form id="rsvpForm" class="rsvp-form reveal" data-reveal style="--d:0.24s" novalidate>
         <label for="guestName" class="rsvp-form__label">Tu nombre</label>
