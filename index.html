@@ -69,6 +69,38 @@
       </g>
       <circle cx="100" cy="55" r="6" fill="url(#silverGrad)"/>
     </symbol>
+
+    <!-- bolso de compras elegante, con listón — silueta propia, sin logotipo ni marca -->
+    <symbol id="bag" viewBox="0 0 100 118">
+      <g fill="none" stroke="url(#silverGrad)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M27 39 C27 19 34 6 50 6 C66 6 73 19 73 39"/>
+        <path d="M11 39 H89 L81 112 H19 Z"/>
+      </g>
+      <use href="#bow" x="28" y="46" width="44" height="24"/>
+    </symbol>
+
+    <!-- zapatilla de tacón, silueta de línea — sin marca -->
+    <symbol id="heel" viewBox="0 0 130 84">
+      <path d="M8 54 C8 38 24 30 42 30 C54 30 60 24 70 19 C84 12 100 13 110 22 C115 26 113 33 106 35 L99 37 L99 52 C99 60 92 67 83 67 L24 67 C14 67 8 61 8 54 Z"
+            fill="url(#silverGrad)" stroke="#ffffff" stroke-opacity="0.35" stroke-width="0.6"/>
+      <path d="M99 37 L106 73 C107 78 102 81 98 77 L90 67" fill="none" stroke="url(#silverGrad)" stroke-width="3.6" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- collar de perlas, lazo abierto — acento decorativo -->
+    <symbol id="pearlLoop" viewBox="0 0 100 100">
+      <path d="M67 15 A34 40 0 1 1 33 15" fill="none" stroke="url(#silverGrad)" stroke-width="1" opacity="0.45"/>
+      <use href="#pearl" x="57" y="5" width="20" height="20"/>
+      <use href="#pearl" x="69" y="20" width="20" height="20"/>
+      <use href="#pearl" x="74" y="40" width="20" height="20"/>
+      <use href="#pearl" x="69" y="60" width="20" height="20"/>
+      <use href="#pearl" x="57" y="75" width="20" height="20"/>
+      <use href="#pearl" x="40" y="80" width="20" height="20"/>
+      <use href="#pearl" x="23" y="75" width="20" height="20"/>
+      <use href="#pearl" x="11" y="60" width="20" height="20"/>
+      <use href="#pearl" x="6" y="40" width="20" height="20"/>
+      <use href="#pearl" x="11" y="20" width="20" height="20"/>
+      <use href="#pearl" x="23" y="5" width="20" height="20"/>
+    </symbol>
   </defs>
 </svg>
 
@@ -97,24 +129,16 @@
     <div class="hero__vignette" aria-hidden="true"></div>
 
     <div class="pearl-row pearl-row--top" aria-hidden="true">
-      <svg class="pearl-row__svg" viewBox="0 0 720 40" preserveAspectRatio="xMidYMid meet">
-        <use href="#pearl" x="0" y="0" width="40" height="40"/>
-        <use href="#pearl" x="45" y="2" width="36" height="36"/>
-        <use href="#pearl" x="86" y="0" width="40" height="40"/>
-        <use href="#pearl" x="131" y="2" width="36" height="36"/>
-        <use href="#pearl" x="172" y="0" width="40" height="40"/>
-        <use href="#pearl" x="217" y="2" width="36" height="36"/>
-        <use href="#pearl" x="258" y="0" width="40" height="40"/>
-        <use href="#pearl" x="303" y="2" width="36" height="36"/>
-        <use href="#pearl" x="344" y="0" width="40" height="40"/>
-        <use href="#pearl" x="389" y="2" width="36" height="36"/>
-        <use href="#pearl" x="430" y="0" width="40" height="40"/>
-        <use href="#pearl" x="475" y="2" width="36" height="36"/>
-        <use href="#pearl" x="516" y="0" width="40" height="40"/>
-        <use href="#pearl" x="561" y="2" width="36" height="36"/>
-        <use href="#pearl" x="602" y="0" width="40" height="40"/>
-        <use href="#pearl" x="647" y="2" width="36" height="36"/>
-        <use href="#pearl" x="680" y="0" width="40" height="40"/>
+      <svg class="pearl-row__svg" viewBox="0 0 600 74" preserveAspectRatio="xMidYMid meet" style="aspect-ratio:600/74">
+        <use href="#pearl" x="0" y="6" width="62" height="62"/>
+        <use href="#pearl" x="66" y="0" width="58" height="58"/>
+        <use href="#pearl" x="130" y="8" width="62" height="62"/>
+        <use href="#pearl" x="196" y="2" width="58" height="58"/>
+        <use href="#pearl" x="260" y="10" width="64" height="64"/>
+        <use href="#pearl" x="328" y="2" width="58" height="58"/>
+        <use href="#pearl" x="392" y="8" width="62" height="62"/>
+        <use href="#pearl" x="458" y="0" width="58" height="58"/>
+        <use href="#pearl" x="522" y="6" width="62" height="62"/>
       </svg>
     </div>
 
@@ -146,47 +170,39 @@
   </section>
 
   <!-- ============ 2. PRESENTACIÓN ============ -->
-  <section id="presentacion" class="section section--light" aria-label="Presentación del cumpleaños">
-    <svg class="deco deco--rose deco--rose-corner" viewBox="0 0 120 120" aria-hidden="true"><use href="#rose"/></svg>
-
-    <div class="container container--narrow">
-      <p class="kicker reveal" data-reveal>Un capítulo digno de celebrarse</p>
-      <p class="lead reveal" data-reveal style="--d:0.1s">
+  <section id="presentacion" class="section section--photo" aria-label="Presentación del cumpleaños" style="background-image:url('assets/karen-retrato.jpg')">
+    <div class="container container--narrow presentacion-card reveal" data-reveal>
+      <p class="kicker">Un capítulo digno de celebrarse</p>
+      <p class="lead">
         Te invito a celebrar este momento especial en mi vida.<br>
         ¡Será una noche inolvidable!
       </p>
-      <div class="ornament reveal" data-reveal style="--d:0.2s" aria-hidden="true">
+      <div class="ornament" aria-hidden="true">
         <span class="ornament__line"></span>
         <svg class="ornament__sparkle" viewBox="0 0 40 40"><use href="#sparkle"/></svg>
         <span class="ornament__line"></span>
       </div>
-      <p class="signature reveal" data-reveal style="--d:0.3s">— Karen Lizbeth</p>
+      <p class="signature">— Karen Lizbeth</p>
     </div>
   </section>
 
   <!-- ============ 3. FECHA Y HORA ============ -->
   <section id="fecha" class="section section--dark" aria-label="Fecha y hora del evento">
+    <svg class="deco deco--rose deco--rose-corner" viewBox="0 0 120 120" aria-hidden="true"><use href="#rose"/></svg>
+    <svg class="deco deco--sparkle deco--sparkle-c" viewBox="0 0 40 40" aria-hidden="true"><use href="#sparkle"/></svg>
     <div class="pearl-row pearl-row--thin" aria-hidden="true">
-      <svg viewBox="0 0 720 28" preserveAspectRatio="xMidYMid meet">
-        <use href="#pearl" x="0" y="0" width="28" height="28"/>
-        <use href="#pearl" x="38" y="0" width="28" height="28"/>
-        <use href="#pearl" x="76" y="0" width="28" height="28"/>
-        <use href="#pearl" x="114" y="0" width="28" height="28"/>
-        <use href="#pearl" x="152" y="0" width="28" height="28"/>
-        <use href="#pearl" x="190" y="0" width="28" height="28"/>
-        <use href="#pearl" x="228" y="0" width="28" height="28"/>
-        <use href="#pearl" x="266" y="0" width="28" height="28"/>
-        <use href="#pearl" x="304" y="0" width="28" height="28"/>
-        <use href="#pearl" x="342" y="0" width="28" height="28"/>
-        <use href="#pearl" x="380" y="0" width="28" height="28"/>
-        <use href="#pearl" x="418" y="0" width="28" height="28"/>
-        <use href="#pearl" x="456" y="0" width="28" height="28"/>
-        <use href="#pearl" x="494" y="0" width="28" height="28"/>
-        <use href="#pearl" x="532" y="0" width="28" height="28"/>
-        <use href="#pearl" x="570" y="0" width="28" height="28"/>
-        <use href="#pearl" x="608" y="0" width="28" height="28"/>
-        <use href="#pearl" x="646" y="0" width="28" height="28"/>
-        <use href="#pearl" x="684" y="0" width="28" height="28"/>
+      <svg viewBox="0 0 560 46" preserveAspectRatio="xMidYMid meet" style="aspect-ratio:560/46">
+        <use href="#pearl" x="0" y="2" width="42" height="42"/>
+        <use href="#pearl" x="50" y="0" width="46" height="46"/>
+        <use href="#pearl" x="104" y="2" width="42" height="42"/>
+        <use href="#pearl" x="154" y="0" width="46" height="46"/>
+        <use href="#pearl" x="208" y="2" width="42" height="42"/>
+        <use href="#pearl" x="258" y="0" width="46" height="46"/>
+        <use href="#pearl" x="312" y="2" width="42" height="42"/>
+        <use href="#pearl" x="362" y="0" width="46" height="46"/>
+        <use href="#pearl" x="416" y="2" width="42" height="42"/>
+        <use href="#pearl" x="466" y="0" width="46" height="46"/>
+        <use href="#pearl" x="518" y="2" width="42" height="42"/>
       </svg>
     </div>
 
@@ -225,8 +241,15 @@
 
   <!-- ============ 4. DRESS CODE ============ -->
   <section id="dresscode" class="section section--light" aria-label="Código de vestimenta">
+    <svg class="deco deco--bag deco--bag-tl" viewBox="0 0 100 118" aria-hidden="true"><use href="#bag"/></svg>
+    <svg class="deco deco--heel deco--heel-br" viewBox="0 0 130 84" aria-hidden="true"><use href="#heel"/></svg>
+
     <div class="container container--narrow">
-      <p class="kicker reveal" data-reveal>Vísteme de elegancia</p>
+      <blockquote class="chanel-quote reveal" data-reveal>
+        <p>“No hago moda, soy la moda.”</p>
+        <cite>— Coco Chanel</cite>
+      </blockquote>
+
       <h2 class="section-title reveal" data-reveal style="--d:0.08s">Dress Code</h2>
 
       <div class="dresscode-card reveal" data-reveal style="--d:0.16s">
@@ -266,6 +289,7 @@
   <section id="confirmar" class="section section--dark" aria-label="Confirmar asistencia">
     <svg class="deco deco--sparkle deco--sparkle-a" viewBox="0 0 40 40" aria-hidden="true"><use href="#sparkle"/></svg>
     <svg class="deco deco--sparkle deco--sparkle-b" viewBox="0 0 40 40" aria-hidden="true"><use href="#sparkle"/></svg>
+    <svg class="deco deco--pearlloop deco--pearlloop-a" viewBox="0 0 100 100" aria-hidden="true"><use href="#pearlLoop"/></svg>
 
     <div class="container container--narrow">
       <p class="kicker kicker--light reveal" data-reveal>Tu presencia es el mejor regalo</p>
@@ -283,6 +307,8 @@
 
   <!-- ============ 6. UBICACIÓN ============ -->
   <section id="ubicacion" class="section section--light" aria-label="Ubicación del evento">
+    <svg class="deco deco--rose deco--rose-corner" viewBox="0 0 120 120" aria-hidden="true"><use href="#rose"/></svg>
+    <svg class="deco deco--sparkle deco--sparkle-d" viewBox="0 0 40 40" aria-hidden="true"><use href="#sparkle"/></svg>
     <div class="container container--narrow">
       <p class="kicker reveal" data-reveal>Te esperamos en</p>
       <h2 class="section-title reveal" data-reveal style="--d:0.08s">Jardín La Villa</h2>
@@ -305,12 +331,20 @@
     <svg class="deco deco--rose deco--rose-br" viewBox="0 0 120 120" aria-hidden="true"><use href="#rose"/></svg>
 
     <div class="hero__content hero__content--closing">
-      <div class="hero__bow reveal" data-reveal aria-hidden="true">
+      <div class="closing__frame reveal" data-reveal aria-label="Fotografía de Karen Lizbeth">
+        <img src="assets/karen-glam.jpg" alt="Karen Lizbeth lista para celebrar sus 40 años" class="closing__photo">
+        <svg class="closing__frame-pearl closing__frame-pearl--tl" viewBox="0 0 40 40" aria-hidden="true"><use href="#pearl"/></svg>
+        <svg class="closing__frame-pearl closing__frame-pearl--tr" viewBox="0 0 40 40" aria-hidden="true"><use href="#pearl"/></svg>
+        <svg class="closing__frame-pearl closing__frame-pearl--bl" viewBox="0 0 40 40" aria-hidden="true"><use href="#pearl"/></svg>
+        <svg class="closing__frame-pearl closing__frame-pearl--br" viewBox="0 0 40 40" aria-hidden="true"><use href="#pearl"/></svg>
+      </div>
+
+      <div class="hero__bow reveal" data-reveal style="--d:0.1s" aria-hidden="true">
         <svg viewBox="0 0 200 110"><use href="#bow"/></svg>
       </div>
-      <p class="closing__title reveal" data-reveal style="--d:0.1s">¡Te espero!</p>
-      <p class="closing__sub reveal" data-reveal style="--d:0.2s">Karen Lizbeth · Mis 40 años</p>
-      <p class="closing__date reveal" data-reveal style="--d:0.3s">17 de octubre de 2026 — Jardín La Villa</p>
+      <p class="closing__title reveal" data-reveal style="--d:0.2s">¡Te espero!</p>
+      <p class="closing__sub reveal" data-reveal style="--d:0.3s">Karen Lizbeth · Mis 40 años</p>
+      <p class="closing__date reveal" data-reveal style="--d:0.4s">17 de octubre de 2026 — Jardín La Villa</p>
     </div>
   </section>
 

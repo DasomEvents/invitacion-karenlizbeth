@@ -83,6 +83,14 @@ volumen inicial queda fijo en 50%.
   (`https://wa.me/527712277589`)
 - **Ubicación:** botón "Ver Ubicación" que abre
   `https://maps.app.goo.gl/uTKM4n7M5GJc76nm8` en una pestaña nueva
+- **Fotografías:** `assets/karen-retrato.jpg` como fondo de la sección
+  "Un capítulo digno de celebrarse", y `assets/karen-glam.jpg` en un marco
+  plateado con detalle de perlas en la sección de despedida
+- **Frase de Coco Chanel:** "No hago moda, soy la moda" en la sección de
+  Dress Code
+- **Decoración adicional:** bolso y tacón ilustrados (silueta propia, sin
+  logotipos ni nombres de marca) y un collar de perlas decorativo,
+  además de las rosas, destellos y el moño ya existentes
 
 ## Elementos que puedes modificar fácilmente en el futuro
 
@@ -102,6 +110,13 @@ Todos se encuentran comentados y organizados por sección dentro de
   `<head>` de `index.html` y estos nombres.
 - **Fecha y hora del countdown** — en `js/script.js`, la línea
   `new Date("2026-10-17T17:00:00-06:00")`.
+- **Fotografías** — reemplaza `assets/karen-retrato.jpg` o
+  `assets/karen-glam.jpg` por otra imagen con el mismo nombre de archivo
+  (o cambia el nombre en `index.html`/`css/styles.css` si usas uno
+  distinto). Se recomienda un tamaño similar (900–1000px de ancho) para
+  que el sitio siga cargando rápido.
+- **Frase de la sección Dress Code** — en `index.html`, dentro de
+  `<blockquote class="chanel-quote">`.
 - **Número de WhatsApp y mensaje** — en `js/script.js`, dentro de
   `initRSVP()` (constante `WHATSAPP_NUMBER` y la variable `message`).
 - **Liga de Google Maps** — en `index.html`, el atributo `href` del botón

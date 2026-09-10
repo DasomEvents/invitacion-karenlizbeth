@@ -80,6 +80,27 @@ input:focus-visible {
 .section--light { background: var(--ivory); color: var(--charcoal); }
 .section--dark  { background: linear-gradient(180deg, var(--black) 0%, #121113 100%); color: var(--grey-100); }
 
+.section--photo {
+  background-color: var(--charcoal);
+  background-size: cover;
+  background-position: center 14%;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: clamp(560px, 100vh, 820px);
+  padding: 0 1.25rem;
+}
+
+.presentacion-card {
+  background: var(--ivory);
+  width: 100%;
+  padding: clamp(2.2rem, 7vw, 3.2rem) clamp(1.5rem, 6vw, 3rem);
+  margin-bottom: clamp(1.5rem, 6vh, 3rem);
+  border-radius: 2px;
+  box-shadow: 0 25px 60px -18px rgba(0, 0, 0, 0.55);
+}
+
 .container {
   position: relative;
   z-index: 2;
@@ -141,6 +162,33 @@ input:focus-visible {
   font-size: 1.2rem;
   color: var(--silver-3);
   margin-top: 1.75rem;
+}
+
+.chanel-quote {
+  margin: 0 auto 2.25rem;
+  padding: 0;
+  border: none;
+  max-width: 30ch;
+}
+
+.chanel-quote p {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.4rem, 5vw, 1.9rem);
+  color: var(--black);
+  margin: 0 0 0.6rem;
+  line-height: 1.3;
+}
+
+.chanel-quote cite {
+  display: block;
+  font-style: normal;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--grey-500);
 }
 
 .ornament {
@@ -224,6 +272,7 @@ input:focus-visible {
 .section--hero {
   min-height: 100svh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background: radial-gradient(120% 90% at 50% 15%, #1c1b1e 0%, var(--black) 55%, #050505 100%);
@@ -259,8 +308,8 @@ input:focus-visible {
 
 .eyebrow {
   font-family: var(--font-sans);
-  font-size: 0.7rem;
-  letter-spacing: 0.35em;
+  font-size: clamp(0.72rem, 2.6vw, 0.8rem);
+  letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--grey-300);
   margin: 0 0 1.2rem;
@@ -271,7 +320,7 @@ input:focus-visible {
   font-family: var(--font-display);
   font-weight: 700;
   line-height: 1.05;
-  font-size: clamp(3rem, 13vw, 6.5rem);
+  font-size: clamp(3.6rem, 16vw, 6.5rem);
   background: var(--silver-shine);
   background-size: 200% 200%;
   -webkit-background-clip: text;
@@ -287,21 +336,21 @@ input:focus-visible {
   font-family: var(--font-serif);
   font-style: italic;
   font-weight: 500;
-  font-size: clamp(1.4rem, 4vw, 2.1rem);
+  font-size: clamp(1.7rem, 6.5vw, 2.3rem);
   color: var(--grey-100);
   margin: 0.75rem 0 0;
   letter-spacing: 0.02em;
 }
 
 .hero__bow {
-  width: clamp(120px, 22vw, 170px);
-  margin: 2rem auto 1.5rem;
+  width: clamp(150px, 34vw, 190px);
+  margin: 2.2rem auto 1.5rem;
   filter: drop-shadow(0 10px 22px rgba(0,0,0,0.45));
 }
 
 .hero__meta {
   font-family: var(--font-sans);
-  font-size: 0.95rem;
+  font-size: clamp(1rem, 3.6vw, 1.05rem);
   letter-spacing: 0.06em;
   color: var(--grey-300);
   margin: 0;
@@ -355,15 +404,16 @@ input:focus-visible {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 760px;
+  max-width: 620px;
   margin: 0 auto 2.5rem;
-  padding: 0 1rem;
+  padding: 0 1.25rem;
+  flex-shrink: 0;
 }
 
-.pearl-row--top { margin-top: -2rem; margin-bottom: 2rem; opacity: 0.92; }
-.pearl-row--thin { max-width: 700px; margin-bottom: 3rem; }
+.pearl-row--top { margin-top: -1.5rem; margin-bottom: 2.2rem; opacity: 0.95; }
+.pearl-row--thin { max-width: 560px; margin-bottom: 3rem; }
 
-.pearl-row svg { width: 100%; height: auto; }
+.pearl-row svg { display: block; width: 100%; height: auto; }
 
 /* ==========================================================================
    Elementos decorativos flotantes (rosas, destellos)
@@ -384,11 +434,29 @@ input:focus-visible {
 .deco--sparkle { width: 34px; height: 34px; opacity: 0.7; }
 .deco--sparkle-a { top: 12%; left: 8%; animation: twinkle 4.5s ease-in-out infinite; }
 .deco--sparkle-b { bottom: 15%; right: 10%; animation: twinkle 5.5s ease-in-out infinite 0.8s; }
+.deco--sparkle-c { top: 8%; right: 12%; animation: twinkle 5s ease-in-out infinite 0.4s; }
+.deco--sparkle-d { bottom: 10%; left: 9%; animation: twinkle 4.8s ease-in-out infinite 1.2s; }
 
 @keyframes twinkle {
   0%, 100% { opacity: 0.25; transform: scale(0.85); }
   50% { opacity: 0.85; transform: scale(1.05); }
 }
+
+.deco--bag,
+.deco--heel {
+  width: clamp(58px, 11vw, 92px);
+  opacity: 0.4;
+}
+
+.deco--bag-tl { top: 6%; left: -14px; transform: rotate(-8deg); }
+.deco--heel-br { bottom: 8%; right: -10px; transform: rotate(6deg); }
+
+.deco--pearlloop {
+  width: clamp(70px, 13vw, 110px);
+  opacity: 0.5;
+}
+
+.deco--pearlloop-a { top: 4%; right: 4%; }
 
 /* ==========================================================================
    3. FECHA Y HORA — countdown
@@ -624,6 +692,38 @@ input:focus-visible {
 }
 
 .hero__content--closing { text-align: center; }
+
+.closing__frame {
+  position: relative;
+  width: min(64vw, 260px);
+  margin: 0 auto 1.5rem;
+  padding: 10px;
+  background: var(--silver-shine);
+  background-size: 200% 200%;
+  border-radius: 3px;
+  box-shadow: 0 25px 55px -18px rgba(0, 0, 0, 0.7);
+}
+
+.closing__photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center 18%;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+.closing__frame-pearl {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.closing__frame-pearl--tl { top: -12px; left: -12px; }
+.closing__frame-pearl--tr { top: -12px; right: -12px; }
+.closing__frame-pearl--bl { bottom: -12px; left: -12px; }
+.closing__frame-pearl--br { bottom: -12px; right: -12px; }
 
 .closing__title {
   font-family: var(--font-display);
