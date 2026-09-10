@@ -167,7 +167,7 @@ input:focus-visible {
   font-size: 0.92rem;
   color: var(--grey-300);
   max-width: 36ch;
-  margin: -0.8rem auto 1.9rem;
+  margin: -0.6rem auto 2.4rem;
 }
 
 .fine-print {
@@ -385,23 +385,35 @@ input:focus-visible {
 }
 
 .hero__bow {
-  width: clamp(150px, 34vw, 190px);
-  margin: 2.2rem auto 1.5rem;
+  width: clamp(110px, 24vw, 152px);
+  margin: 2rem auto 1.5rem;
   filter: drop-shadow(0 10px 22px rgba(0,0,0,0.45));
 }
 
-/* Listón de satín de ancho completo (portada), inspirado en la referencia. */
+/* Franja de satín de ancho completo (portada) con un moño real (asas +
+   colas) centrado encima, inspirado en la referencia. */
 .hero__ribbon {
+  position: relative;
   width: clamp(230px, 68vw, 560px);
-  margin: 1.9rem auto 1.6rem;
-  filter: drop-shadow(0 12px 26px rgba(0, 0, 0, 0.5));
+  margin: 2.4rem auto 1.9rem;
 }
 
-.hero__ribbon svg {
+.hero__ribbon-band {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 800 / 160;
+  aspect-ratio: 800 / 90;
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.45));
+}
+
+.hero__ribbon-bow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: clamp(92px, 22vw, 168px);
+  height: auto;
+  transform: translate(-50%, -42%);
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.55));
 }
 
 .hero__meta {

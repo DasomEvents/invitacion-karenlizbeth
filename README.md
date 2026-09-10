@@ -129,15 +129,21 @@ volumen inicial queda fijo en 50%.
 - **Decoración adicional:** bolso, tacón y frasco de perfume ilustrados
   (silueta propia, sin
   logotipos ni nombres de marca) y un collar de perlas decorativo,
-  además de las rosas (incluida una variante oscura), el listón de satín
-  de la portada y los destellos ya existentes
+  además de las rosas (incluida una variante oscura) y los destellos ya
+  existentes
+- **Moño de la portada y del cierre:** un moño real (con asas y colas,
+  no solo una franja plana) sobre una banda de satín de ancho completo
+  en la portada, y el mismo moño en la sección de despedida. La forma
+  del moño viene del diseño abierto ["ribbon" de
+  Twemoji](https://github.com/jdecked/twemoji) (licencia CC-BY 4.0),
+  recoloreado en blanco/plateado para combinar con la paleta del sitio
 - **Regalos:** en la sección de confirmación se mantiene la frase "Tu
-  presencia es el mejor regalo" y se añadió una línea aclarando que
-  cualquier detalle también es bienvenido
-- **Brillos de fondo:** una capa sutil de destellos tipo diamante cubre
-  toda la página (detrás del texto, encima de los fondos de cada
-  sección) y respeta automáticamente la preferencia de "reducir
-  movimiento" del sistema operativo del invitado
+  presencia es el mejor regalo" junto con una línea, justo debajo, que
+  aclara que cualquier detalle también es bienvenido
+- **Brillantina animada:** cientos de partículas se mueven por toda la
+  página (por encima del contenido, no como fondo), con caída suave,
+  giro y parpadeo tipo "twinkle"; respeta automáticamente la preferencia
+  de "reducir movimiento" del sistema operativo del invitado
 
 ## Elementos que puedes modificar fácilmente en el futuro
 
