@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Karen Lizbeth · Mis 40 años</title>
+<meta name="description" content="Invitación digital para la celebración de los 40 años de Karen Lizbeth — 17 de octubre de 2026, Jardín La Villa.">
+<meta name="theme-color" content="#0b0b0d">
+
+<!-- Google Fonts: Playfair Display (elegante, títulos) + Cormorant Garamond (itálica, textos) + Poppins (soporte, botones/etiquetas) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%230b0b0d'/%3E%3Ccircle cx='50' cy='50' r='20' fill='%23d9d9df'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ============ SPRITE SVG: elementos decorativos reutilizables ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="silverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5f5f7"/>
+      <stop offset="22%" stop-color="#c7c9cf"/>
+      <stop offset="45%" stop-color="#8f9198"/>
+      <stop offset="55%" stop-color="#e8e9ec"/>
+      <stop offset="72%" stop-color="#a9abb2"/>
+      <stop offset="100%" stop-color="#f0f0f2"/>
+    </linearGradient>
+    <radialGradient id="pearlGrad" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="45%" stop-color="#e7e6e2"/>
+      <stop offset="75%" stop-color="#c7c4bd"/>
+      <stop offset="100%" stop-color="#a9a69e"/>
+    </radialGradient>
+
+    <!-- perla individual -->
+    <symbol id="pearl" viewBox="0 0 40 40">
+      <circle cx="20" cy="20" r="17" fill="url(#pearlGrad)"/>
+      <ellipse cx="14" cy="13" rx="5" ry="3.5" fill="#ffffff" opacity="0.85"/>
+    </symbol>
+
+    <!-- destello de 4 puntas -->
+    <symbol id="sparkle" viewBox="0 0 40 40">
+      <path d="M20 0 C21 12 22 18 40 20 C22 22 21 28 20 40 C19 28 18 22 0 20 C18 18 19 12 20 0 Z" fill="url(#silverGrad)"/>
+    </symbol>
+
+    <!-- flor / rosa estilizada, trazo fino -->
+    <symbol id="rose" viewBox="0 0 120 120">
+      <g fill="none" stroke="url(#silverGrad)" stroke-width="1.4" stroke-linecap="round">
+        <circle cx="60" cy="60" r="10"/>
+        <path d="M60 50 C48 46 42 34 50 24 C58 34 58 44 60 50 Z"/>
+        <path d="M60 50 C72 46 78 34 70 24 C62 34 62 44 60 50 Z"/>
+        <path d="M60 62 C46 64 34 74 34 88 C48 84 56 74 60 62 Z"/>
+        <path d="M60 62 C74 64 86 74 86 88 C72 84 64 74 60 62 Z"/>
+        <path d="M50 58 C36 56 24 60 16 70 C28 74 40 72 50 58 Z"/>
+        <path d="M70 58 C84 56 96 60 104 70 C92 74 80 72 70 58 Z"/>
+      </g>
+      <circle cx="60" cy="60" r="4" fill="url(#silverGrad)"/>
+    </symbol>
+
+    <!-- moño / listón, referencia a la portada del PDF -->
+    <symbol id="bow" viewBox="0 0 200 110">
+      <g fill="url(#silverGrad)" stroke="#ffffff" stroke-opacity="0.35" stroke-width="0.5">
+        <path d="M100 55 L18 12 C6 6 -4 20 6 32 L70 55 L6 78 C-4 90 6 104 18 98 L100 55 Z"/>
+        <path d="M100 55 L182 12 C194 6 204 20 194 32 L130 55 L194 78 C204 90 194 104 182 98 L100 55 Z"/>
+        <circle cx="100" cy="55" r="13" fill="#f7f7f8"/>
+      </g>
+      <circle cx="100" cy="55" r="6" fill="url(#silverGrad)"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ============ BOTÓN DE MÚSICA (flotante, visible en toda la página) ============ -->
+<audio id="bgMusic" src="audio/party.mp3" loop preload="none"></audio>
+<button id="musicToggle" class="music-toggle" type="button" aria-pressed="false" aria-label="Reproducir música de fondo">
+  <span class="music-toggle__ring" aria-hidden="true"></span>
+  <svg id="iconPlay" class="music-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M8 5.5v13l11-6.5z" fill="currentColor"/>
+  </svg>
+  <svg id="iconPause" class="music-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" hidden>
+    <rect x="6" y="5" width="4" height="14" fill="currentColor"/>
+    <rect x="14" y="5" width="4" height="14" fill="currentColor"/>
+  </svg>
+</button>
+<p id="musicStatus" class="sr-only" role="status" aria-live="polite"></p>
+
+<!-- Indicador de progreso de scroll (sutil, hilo plateado) -->
+<div class="scroll-progress" aria-hidden="true"><div id="scrollProgressBar" class="scroll-progress__bar"></div></div>
+
+<main>
+
+  <!-- ============ 1. PORTADA ============ -->
+  <section id="portada" class="section section--hero" aria-label="Portada de la invitación">
+    <canvas id="particles" class="particles" aria-hidden="true"></canvas>
+    <div class="hero__vignette" aria-hidden="true"></div>
+
+    <div class="pearl-row pearl-row--top" aria-hidden="true">
+      <svg class="pearl-row__svg" viewBox="0 0 720 40" preserveAspectRatio="xMidYMid meet">
+        <use href="#pearl" x="0" y="0" width="40" height="40"/>
+        <use href="#pearl" x="45" y="2" width="36" height="36"/>
+        <use href="#pearl" x="86" y="0" width="40" height="40"/>
+        <use href="#pearl" x="131" y="2" width="36" height="36"/>
+        <use href="#pearl" x="172" y="0" width="40" height="40"/>
+        <use href="#pearl" x="217" y="2" width="36" height="36"/>
+        <use href="#pearl" x="258" y="0" width="40" height="40"/>
+        <use href="#pearl" x="303" y="2" width="36" height="36"/>
+        <use href="#pearl" x="344" y="0" width="40" height="40"/>
+        <use href="#pearl" x="389" y="2" width="36" height="36"/>
+        <use href="#pearl" x="430" y="0" width="40" height="40"/>
+        <use href="#pearl" x="475" y="2" width="36" height="36"/>
+        <use href="#pearl" x="516" y="0" width="40" height="40"/>
+        <use href="#pearl" x="561" y="2" width="36" height="36"/>
+        <use href="#pearl" x="602" y="0" width="40" height="40"/>
+        <use href="#pearl" x="647" y="2" width="36" height="36"/>
+        <use href="#pearl" x="680" y="0" width="40" height="40"/>
+      </svg>
+    </div>
+
+    <svg class="deco deco--rose deco--rose-tl" viewBox="0 0 120 120" aria-hidden="true"><use href="#rose"/></svg>
+    <svg class="deco deco--rose deco--rose-br" viewBox="0 0 120 120" aria-hidden="true"><use href="#rose"/></svg>
+
+    <div class="hero__content">
+      <p class="eyebrow reveal" data-reveal>Tienes una invitación especial</p>
+      <h1 class="hero__title">
+        <span class="reveal reveal--letters" data-reveal>Karen</span>
+        <span class="reveal reveal--letters" data-reveal style="--d:0.12s">Lizbeth</span>
+      </h1>
+      <p class="hero__subtitle reveal" data-reveal style="--d:0.28s">Mis 40 años</p>
+
+      <div class="hero__bow reveal" data-reveal style="--d:0.4s" aria-hidden="true">
+        <svg viewBox="0 0 200 110"><use href="#bow"/></svg>
+      </div>
+
+      <div class="hero__meta reveal" data-reveal style="--d:0.52s">
+        <p>17 de octubre de 2026 · 5:00 PM</p>
+        <p>Jardín La Villa</p>
+      </div>
+    </div>
+
+    <a href="#presentacion" class="scroll-cue" aria-label="Desplázate para descubrir la invitación">
+      <span class="scroll-cue__line" aria-hidden="true"></span>
+      <span class="scroll-cue__text">Desliza para descubrir</span>
+    </a>
+  </section>
+
+  <!-- ============ 2. PRESENTACIÓN ============ -->
+  <section id="presentacion" class="section section--light" aria-label="Presentación del cumpleaños">
+    <svg class="deco deco--rose deco--rose-corner" viewBox="0 0 120 120" aria-hidden="true"><use href="#rose"/></svg>
+
+    <div class="container container--narrow">
+      <p class="kicker reveal" data-reveal>Un capítulo digno de celebrarse</p>
+      <p class="lead reveal" data-reveal style="--d:0.1s">
+        Te invito a celebrar este momento especial en mi vida.<br>
+        ¡Será una noche inolvidable!
+      </p>
+      <div class="ornament reveal" data-reveal style="--d:0.2s" aria-hidden="true">
+        <span class="ornament__line"></span>
+        <svg class="ornament__sparkle" viewBox="0 0 40 40"><use href="#sparkle"/></svg>
+        <span class="ornament__line"></span>
+      </div>
+      <p class="signature reveal" data-reveal style="--d:0.3s">— Karen Lizbeth</p>
+    </div>
+  </section>
+
+  <!-- ============ 3. FECHA Y HORA ============ -->
+  <section id="fecha" class="section section--dark" aria-label="Fecha y hora del evento">
+    <div class="pearl-row pearl-row--thin" aria-hidden="true">
+      <svg viewBox="0 0 720 28" preserveAspectRatio="xMidYMid meet">
+        <use href="#pearl" x="0" y="0" width="28" height="28"/>
+        <use href="#pearl" x="38" y="0" width="28" height="28"/>
+        <use href="#pearl" x="76" y="0" width="28" height="28"/>
+        <use href="#pearl" x="114" y="0" width="28" height="28"/>
+        <use href="#pearl" x="152" y="0" width="28" height="28"/>
+        <use href="#pearl" x="190" y="0" width="28" height="28"/>
+        <use href="#pearl" x="228" y="0" width="28" height="28"/>
+        <use href="#pearl" x="266" y="0" width="28" height="28"/>
+        <use href="#pearl" x="304" y="0" width="28" height="28"/>
+        <use href="#pearl" x="342" y="0" width="28" height="28"/>
+        <use href="#pearl" x="380" y="0" width="28" height="28"/>
+        <use href="#pearl" x="418" y="0" width="28" height="28"/>
+        <use href="#pearl" x="456" y="0" width="28" height="28"/>
+        <use href="#pearl" x="494" y="0" width="28" height="28"/>
+        <use href="#pearl" x="532" y="0" width="28" height="28"/>
+        <use href="#pearl" x="570" y="0" width="28" height="28"/>
+        <use href="#pearl" x="608" y="0" width="28" height="28"/>
+        <use href="#pearl" x="646" y="0" width="28" height="28"/>
+        <use href="#pearl" x="684" y="0" width="28" height="28"/>
+      </svg>
+    </div>
+
+    <div class="container">
+      <p class="kicker kicker--light reveal" data-reveal>Guarda la fecha</p>
+      <p class="date-display reveal" data-reveal style="--d:0.1s">17 <span class="date-display__dot">·</span> 10 <span class="date-display__dot">·</span> 2026</p>
+
+      <div class="countdown reveal" data-reveal style="--d:0.2s" aria-label="Cuenta regresiva para el evento">
+        <div class="countdown__item">
+          <span class="countdown__num" id="cd-dias">00</span>
+          <span class="countdown__label">Días</span>
+        </div>
+        <div class="countdown__item">
+          <span class="countdown__num" id="cd-horas">00</span>
+          <span class="countdown__label">Horas</span>
+        </div>
+        <div class="countdown__item">
+          <span class="countdown__num" id="cd-min">00</span>
+          <span class="countdown__label">Minutos</span>
+        </div>
+        <div class="countdown__item">
+          <span class="countdown__num" id="cd-seg">00</span>
+          <span class="countdown__label">Segundos</span>
+        </div>
+      </div>
+
+      <div class="time-badge reveal" data-reveal style="--d:0.3s">
+        <svg class="time-badge__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="9.2" fill="none" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M12 7v5.2l3.6 2.1" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+        <span>5:00 PM</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. DRESS CODE ============ -->
+  <section id="dresscode" class="section section--light" aria-label="Código de vestimenta">
+    <div class="container container--narrow">
+      <p class="kicker reveal" data-reveal>Vísteme de elegancia</p>
+      <h2 class="section-title reveal" data-reveal style="--d:0.08s">Dress Code</h2>
+
+      <div class="dresscode-card reveal" data-reveal style="--d:0.16s">
+        <p class="dresscode-card__main">Black &amp; White</p>
+        <p class="dresscode-card__sub">Perlas · Brillos</p>
+      </div>
+
+      <div class="silver-badge reveal" data-reveal style="--d:0.26s">
+        <span class="silver-badge__orb" aria-hidden="true">
+          <svg viewBox="0 0 100 100">
+            <defs>
+              <radialGradient id="orbShine" cx="35%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="45%" stop-color="#d6d7db"/>
+                <stop offset="100%" stop-color="#8b8d94"/>
+              </radialGradient>
+            </defs>
+            <circle cx="50" cy="50" r="46" fill="url(#orbShine)"/>
+            <g stroke="#6b6d74" stroke-width="0.6" opacity="0.5">
+              <path d="M4 50h92M50 4v92M15 15l70 70M85 15L15 85"/>
+              <circle cx="50" cy="50" r="30" fill="none"/>
+              <circle cx="50" cy="50" r="14" fill="none"/>
+            </g>
+          </svg>
+        </span>
+        <span class="silver-badge__text">
+          <strong>Color Plata</strong>
+          <em>Exclusivo de la cumpleañera</em>
+        </span>
+      </div>
+
+      <p class="fine-print reveal" data-reveal style="--d:0.34s">Te pedimos amablemente reservar los tonos plateados para la festejada. ¡Gracias por celebrar con estilo!</p>
+    </div>
+  </section>
+
+  <!-- ============ 5. CONFIRMAR ASISTENCIA ============ -->
+  <section id="confirmar" class="section section--dark" aria-label="Confirmar asistencia">
+    <svg class="deco deco--sparkle deco--sparkle-a" viewBox="0 0 40 40" aria-hidden="true"><use href="#sparkle"/></svg>
+    <svg class="deco deco--sparkle deco--sparkle-b" viewBox="0 0 40 40" aria-hidden="true"><use href="#sparkle"/></svg>
+
+    <div class="container container--narrow">
+      <p class="kicker kicker--light reveal" data-reveal>Tu presencia es el mejor regalo</p>
+      <h2 class="section-title section-title--light reveal" data-reveal style="--d:0.08s">Confirma tu asistencia</h2>
+      <p class="lead lead--light reveal" data-reveal style="--d:0.16s">Escribe tu nombre y confírmame por WhatsApp que nos acompañarás.</p>
+
+      <form id="rsvpForm" class="rsvp-form reveal" data-reveal style="--d:0.24s" novalidate>
+        <label for="guestName" class="rsvp-form__label">Tu nombre</label>
+        <input type="text" id="guestName" name="guestName" class="rsvp-form__input" placeholder="Escribe tu nombre" autocomplete="name" required aria-describedby="guestNameError">
+        <p id="guestNameError" class="rsvp-form__error" role="alert" hidden>Por favor escribe tu nombre para continuar.</p>
+        <button type="submit" class="btn btn--primary rsvp-form__button">Confirma mi Asistencia</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ 6. UBICACIÓN ============ -->
+  <section id="ubicacion" class="section section--light" aria-label="Ubicación del evento">
+    <div class="container container--narrow">
+      <p class="kicker reveal" data-reveal>Te esperamos en</p>
+      <h2 class="section-title reveal" data-reveal style="--d:0.08s">Jardín La Villa</h2>
+
+      <svg class="pin-icon reveal" data-reveal style="--d:0.14s" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8z" fill="none" stroke="url(#silverGrad)" stroke-width="1.4"/>
+        <circle cx="12" cy="10" r="3.2" fill="url(#silverGrad)"/>
+      </svg>
+
+      <a class="btn btn--outline reveal" data-reveal style="--d:0.22s" href="https://maps.app.goo.gl/uTKM4n7M5GJc76nm8" target="_blank" rel="noopener noreferrer" aria-label="Ver ubicación de Jardín La Villa en Google Maps (se abre en una nueva pestaña)">
+        Ver Ubicación
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ 7. CIERRE ============ -->
+  <section id="cierre" class="section section--hero section--closing" aria-label="Despedida">
+    <canvas id="particles2" class="particles" aria-hidden="true"></canvas>
+    <svg class="deco deco--rose deco--rose-tl" viewBox="0 0 120 120" aria-hidden="true"><use href="#rose"/></svg>
+    <svg class="deco deco--rose deco--rose-br" viewBox="0 0 120 120" aria-hidden="true"><use href="#rose"/></svg>
+
+    <div class="hero__content hero__content--closing">
+      <div class="hero__bow reveal" data-reveal aria-hidden="true">
+        <svg viewBox="0 0 200 110"><use href="#bow"/></svg>
+      </div>
+      <p class="closing__title reveal" data-reveal style="--d:0.1s">¡Te espero!</p>
+      <p class="closing__sub reveal" data-reveal style="--d:0.2s">Karen Lizbeth · Mis 40 años</p>
+      <p class="closing__date reveal" data-reveal style="--d:0.3s">17 de octubre de 2026 — Jardín La Villa</p>
+    </div>
+  </section>
+
+</main>
+
+<script src="js/script.js"></script>
+</body>
+</html>
