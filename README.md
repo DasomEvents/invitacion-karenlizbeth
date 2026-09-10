@@ -21,6 +21,10 @@ proyecto — no necesitas instalar nada.
 ├── audio/
 │   └── README.txt      → aquí colocarás tu archivo party.mp3 (ver abajo)
 ├── assets/
+│   ├── hero-bg.jpg      → fondo fotográfico de la portada (perlas, moño y rosas)
+│   ├── dresscode-bg.jpg → fondo fotográfico de la sección Dress Code (perlas, joyería y bolso)
+│   ├── karen-retrato.jpg → foto de la sección "Un capítulo digno de celebrarse"
+│   ├── karen-glam.jpg   → foto de la sección de despedida (fondo completo)
 │   └── README.txt      → carpeta libre para imágenes futuras (opcional)
 └── README.md            → este archivo
 ```
@@ -99,13 +103,20 @@ la señal de que el espacio está listo.
    en `assets/chanel-logo.png`, el recuadro punteado desaparece solo y
    en su lugar se muestra tu logotipo.
 
-**Nota sobre autoplay:** los navegadores modernos no permiten reproducir
-audio con sonido automáticamente sin que la persona interactúe primero con
-la página. Por eso, en cuanto el invitado hace clic, toca la pantalla o
-hace scroll por primera vez, el sitio intenta iniciar la música
-automáticamente; si el navegador aún así lo bloquea, el botón de Play
-sigue disponible para iniciarla manualmente en cualquier momento. El
-volumen inicial queda fijo en 50%.
+**Nota sobre autoplay:** la página intenta iniciar la música apenas
+termina de cargar, sin esperar ningún clic. Sin embargo, esto es
+importante: **ningún sitio web puede garantizar sonido automático al
+100% de las veces** — es una restricción de seguridad de los propios
+navegadores (sobre todo en celulares), no algo que se pueda desactivar
+desde el código. En navegadores/dispositivos que sí lo permiten, la
+música empieza a sonar sola; donde el navegador lo bloquee (lo más común
+la primera vez que alguien abre el enlace en su celular), en cuanto esa
+persona toca la pantalla, hace scroll o pulsa una tecla por primera vez
+— incluso el gesto de deslizar para ver la invitación — la música
+arranca automáticamente en ese instante, sin que note que hubo un
+bloqueo. El botón de Play/Pausa de la esquina superior siempre queda
+disponible para iniciarla o pausarla manualmente. El volumen inicial
+queda fijo en 50%.
 
 ## Datos que ya están configurados
 
@@ -118,19 +129,28 @@ volumen inicial queda fijo en 50%.
 - **Confirmación de asistencia:** formulario con nombre → genera
   automáticamente un mensaje de WhatsApp al número 7712277589
   (`https://wa.me/527712277589`)
-- **Ubicación:** botón "Ver Ubicación" que abre
+- **Ubicación:** dirección en texto ("Av. Primero de mayo 38, El
+  saucillo, Pachuca, Hgo.") y botón "Ver Ubicación" que abre
   `https://maps.app.goo.gl/uTKM4n7M5GJc76nm8` en una pestaña nueva
-- **Fotografías:** `assets/karen-retrato.jpg` en la sección "Un capítulo
-  digno de celebrarse" (franja de texto arriba, foto completa sin recortar
-  debajo), y `assets/karen-glam.jpg` en un marco plateado con detalle de
-  perlas en la sección de despedida
+- **Fotografías:**
+  - `assets/hero-bg.jpg` como fondo de toda la portada
+  - `assets/dresscode-bg.jpg` como fondo de toda la sección Dress Code
+  - `assets/karen-retrato.jpg` en la sección "Un capítulo digno de
+    celebrarse" (franja de texto arriba, foto completa sin recortar
+    debajo)
+  - `assets/karen-glam.jpg` como fondo completo de la sección de
+    despedida (franja negra con el texto arriba, foto completa sin
+    recortar debajo — misma estructura que "Un capítulo digno de
+    celebrarse")
 - **Frase de Coco Chanel:** "No hago moda, soy la moda" en la sección de
   Dress Code
-- **Decoración adicional:** bolso, tacón y frasco de perfume ilustrados
-  (silueta propia, sin
-  logotipos ni nombres de marca) y un collar de perlas decorativo,
-  además de las rosas (incluida una variante oscura) y los destellos ya
-  existentes
+- **Decoración adicional:** un collar de perlas decorativo, las rosas
+  (incluida una variante oscura) y los destellos ya existentes en las
+  secciones que no tienen foto de fondo; el bolso, la zapatilla y el
+  frasco de perfume ilustrados a mano ya no se dibujan en la portada,
+  Dress Code ni la despedida porque esos elementos ahora forman parte de
+  las fotografías de fondo — siguen apareciendo como acento en las
+  secciones de Fecha, Confirmar asistencia y Ubicación
 - **Moño de la portada y del cierre:** un moño real (con asas y colas,
   no solo una franja plana) sobre una banda de satín de ancho completo
   en la portada, y el mismo moño en la sección de despedida. La forma
@@ -144,6 +164,9 @@ volumen inicial queda fijo en 50%.
   página (por encima del contenido, no como fondo), con caída suave,
   giro y parpadeo tipo "twinkle"; respeta automáticamente la preferencia
   de "reducir movimiento" del sistema operativo del invitado
+- **Apertura de la página:** siempre abre justo en la portada, hasta
+  arriba del todo — incluso si el invitado vuelve a entrar con el botón
+  "atrás" del navegador
 
 ## Elementos que puedes modificar fácilmente en el futuro
 
@@ -168,6 +191,16 @@ Todos se encuentran comentados y organizados por sección dentro de
   (o cambia el nombre en `index.html`/`css/styles.css` si usas uno
   distinto). Se recomienda un tamaño similar (900–1000px de ancho) para
   que el sitio siga cargando rápido.
+- **Fondos fotográficos de la portada y de Dress Code** — reemplaza
+  `assets/hero-bg.jpg` o `assets/dresscode-bg.jpg` por otra imagen con
+  el mismo nombre (se recomienda un tamaño similar, alrededor de
+  1000×1400px). Ambos fondos llevan un velo de color por encima (definido
+  en `css/styles.css`, en `.section--hero-bg` y `.section--dresscode-bg`)
+  para que el texto se siga leyendo con claridad; si tu nueva foto es muy
+  distinta en tono o brillo, puede que necesites ajustar la opacidad de
+  ese velo ahí mismo.
+- **Dirección de la ubicación** — en `index.html`, dentro de la sección
+  Ubicación, el párrafo con la clase `address-line`.
 - **Frase de la sección Dress Code** — en `index.html`, dentro de
   `<blockquote class="chanel-quote">`.
 - **Número de WhatsApp y mensaje** — en `js/script.js`, dentro de

@@ -303,6 +303,21 @@ input:focus-visible {
   text-align: center;
 }
 
+/* Fondo fotográfico de la portada: perlas, rosas y moño de satín ya
+   forman parte de la imagen, así que las decoraciones vectoriales que
+   antes se dibujaban encima (perlas en diagonal, rosas, moño) se
+   retiraron del HTML. Se añade un velo oscuro adicional (además de
+   .hero__vignette) para que el nombre y el resto del texto se sigan
+   distinguiendo con claridad sobre la fotografía. */
+.section--hero-bg {
+  background-image:
+    linear-gradient(180deg, rgba(5, 5, 6, 0.42) 0%, rgba(5, 5, 6, 0.38) 38%, rgba(5, 5, 6, 0.62) 75%, rgba(5, 5, 6, 0.8) 100%),
+    url("../assets/hero-bg.jpg");
+  background-size: cover, cover;
+  background-position: center 22%, center 22%;
+  background-repeat: no-repeat, no-repeat;
+}
+
 .particles {
   position: absolute;
   inset: 0;
@@ -390,32 +405,6 @@ input:focus-visible {
   filter: drop-shadow(0 10px 22px rgba(0,0,0,0.45));
 }
 
-/* Franja de satín de ancho completo (portada) con un moño real (asas +
-   colas) centrado encima, inspirado en la referencia. */
-.hero__ribbon {
-  position: relative;
-  width: clamp(230px, 68vw, 560px);
-  margin: 2.4rem auto 1.9rem;
-}
-
-.hero__ribbon-band {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 800 / 90;
-  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.45));
-}
-
-.hero__ribbon-bow {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: clamp(92px, 22vw, 168px);
-  height: auto;
-  transform: translate(-50%, -42%);
-  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.55));
-}
-
 .hero__meta {
   font-family: var(--font-sans);
   font-size: clamp(1rem, 3.6vw, 1.05rem);
@@ -448,8 +437,8 @@ input:focus-visible {
 }
 
 .scroll-cue__text {
-  font-size: 0.62rem;
-  letter-spacing: 0.28em;
+  font-size: clamp(0.82rem, 2.8vw, 0.95rem);
+  letter-spacing: 0.24em;
   text-transform: uppercase;
 }
 
@@ -555,24 +544,6 @@ input:focus-visible {
 .deco--heel { width: clamp(150px, 26vw, 240px); }
 .deco--perfume { width: clamp(100px, 18vw, 170px); }
 
-.deco--bag-tl {
-  top: -6%;
-  left: clamp(-30px, -4vw, -10px);
-  transform: rotate(-10deg);
-}
-
-.deco--heel-br {
-  bottom: -4%;
-  right: clamp(-40px, -5vw, -15px);
-  transform: rotate(8deg) scaleX(-1);
-}
-
-.deco--perfume-a {
-  bottom: 2%;
-  left: clamp(-24px, -4vw, -6px);
-  transform: rotate(-6deg);
-}
-
 .deco--pearlloop {
   width: clamp(90px, 16vw, 130px);
   opacity: 0.65;
@@ -591,8 +562,6 @@ input:focus-visible {
 .deco--heel-fecha { bottom: 4%; left: clamp(-20px, -3vw, -6px); transform: rotate(-10deg); }
 .deco--bag-confirmar { bottom: 3%; left: clamp(-18px, -3vw, -4px); transform: rotate(-8deg); }
 .deco--perfume-ubicacion { bottom: 2%; right: clamp(-16px, -3vw, -2px); transform: rotate(6deg); }
-.deco--bag-cierre { top: 20%; left: clamp(-14px, -2.5vw, 0px); transform: rotate(-10deg); }
-.deco--heel-cierre { top: 24%; right: clamp(-14px, -2.5vw, 0px); transform: rotate(10deg) scaleX(-1); }
 
 /* ==========================================================================
    3. FECHA Y HORA — countdown
@@ -660,6 +629,26 @@ input:focus-visible {
 /* ==========================================================================
    4. DRESS CODE
    ========================================================================== */
+
+/* Fondo fotográfico de la sección: perlas, joyería, el bolso y las
+   rosas ya forman parte de la imagen, así que las siluetas vectoriales
+   (bolso/tacón/perfume) que antes se dibujaban encima se retiraron del
+   HTML. El velo claro adicional y el text-shadow en los textos de abajo
+   mantienen todo legible sobre la fotografía sin ocultarla. */
+.section--dresscode-bg {
+  background-image:
+    linear-gradient(180deg, rgba(250, 249, 247, 0.58) 0%, rgba(250, 249, 247, 0.42) 35%, rgba(250, 249, 247, 0.5) 65%, rgba(250, 249, 247, 0.68) 100%),
+    url("../assets/dresscode-bg.jpg");
+  background-size: cover, cover;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+}
+
+.section--dresscode-bg .chanel-quote p,
+.section--dresscode-bg .section-title,
+.section--dresscode-bg .fine-print {
+  text-shadow: 0 2px 16px rgba(250, 249, 247, 0.9), 0 1px 4px rgba(250, 249, 247, 0.95);
+}
 
 .dresscode-card {
   background: var(--black);
@@ -868,6 +857,15 @@ input:focus-visible {
    6. UBICACIÓN
    ========================================================================== */
 
+.address-line {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  color: var(--grey-700);
+  max-width: 34ch;
+  margin: -0.75rem auto 1.75rem;
+}
+
 .pin-icon {
   width: 42px;
   height: 42px;
@@ -878,44 +876,29 @@ input:focus-visible {
    7. CIERRE
    ========================================================================== */
 
-.section--closing {
-  min-height: 90svh;
-  background: radial-gradient(120% 90% at 50% 85%, #1c1b1e 0%, var(--black) 55%, #050505 100%);
+/* Misma estructura que la sección "Un capítulo digno de celebrarse":
+   una franja sólida con el texto (aquí negra, para que resalte) y,
+   debajo, la fotografía completa de la cumpleañera, sin recortar y sin
+   que la franja le tape nada. */
+.section--closing-photo {
+  padding: 0;
+  background: var(--black);
 }
 
-.hero__content--closing { text-align: center; }
-
-.closing__frame {
+.closing-strip {
   position: relative;
-  width: min(64vw, 260px);
-  margin: 0 auto 1.5rem;
-  padding: 10px;
-  background: var(--silver-shine);
-  background-size: 200% 200%;
-  border-radius: 3px;
-  box-shadow: 0 25px 55px -18px rgba(0, 0, 0, 0.7);
+  z-index: 2;
+  background: var(--black);
+  color: var(--white);
+  text-align: center;
+  padding: clamp(2.8rem, 10vw, 4rem) 1.5rem clamp(2rem, 7vw, 2.8rem);
+  box-shadow: 0 12px 30px -18px rgba(0, 0, 0, 0.6);
 }
 
-.closing__photo {
-  display: block;
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  object-position: center 18%;
-  border: 1px solid rgba(255, 255, 255, 0.55);
+.closing-strip .hero__bow {
+  width: clamp(96px, 20vw, 132px);
+  margin: 0 auto 1.4rem;
 }
-
-.closing__frame-pearl {
-  position: absolute;
-  width: 26px;
-  height: 26px;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
-}
-
-.closing__frame-pearl--tl { top: -12px; left: -12px; }
-.closing__frame-pearl--tr { top: -12px; right: -12px; }
-.closing__frame-pearl--bl { bottom: -12px; left: -12px; }
-.closing__frame-pearl--br { bottom: -12px; right: -12px; }
 
 .closing__title {
   font-family: var(--font-display);
@@ -939,6 +922,19 @@ input:focus-visible {
   font-size: 0.85rem;
   color: var(--grey-500);
   margin: 0;
+}
+
+.closing-photo-wrap {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  line-height: 0;
+}
+
+.closing-photo-full {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 /* ==========================================================================
@@ -1076,7 +1072,7 @@ input:focus-visible {
 
 /* La portada revela sola al cargar, sin esperar scroll */
 .section--hero .reveal,
-.section--closing .reveal {
+.section--closing-photo .reveal {
   transition-delay: var(--d, 0s);
 }
 

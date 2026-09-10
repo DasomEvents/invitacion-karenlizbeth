@@ -11,6 +11,23 @@
   var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ------------------------------------------------------------------ *
+   * 0) La página siempre abre justo en la portada (arriba del todo),
+   *    incluso si el navegador intenta restaurar una posición de scroll
+   *    anterior (por ejemplo al volver con el botón "atrás").
+   * ------------------------------------------------------------------ */
+  (function resetScrollPosition() {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+    window.scrollTo(0, 0);
+    window.addEventListener("pageshow", function (event) {
+      if (event.persisted) {
+        window.scrollTo(0, 0);
+      }
+    });
+  })();
+
+  /* ------------------------------------------------------------------ *
    * 1) Cuenta regresiva
    * ------------------------------------------------------------------ */
   (function initCountdown() {
@@ -327,6 +344,16 @@
         announce("Música en pausa.");
       }
     });
+
+    // Intento inmediato de autoplay en cuanto carga el script: en los
+    // navegadores/dispositivos que sí lo permiten (la mayoría de
+    // escritorio, y algunos móviles ya interactuados previamente con el
+    // sitio), la música empieza a sonar sin esperar ningún toque. Donde
+    // el navegador lo bloquee (la mayoría de móviles en la primera
+    // visita, por política de autoplay con sonido), este intento falla
+    // en silencio y el listener de "primera interacción" de abajo la
+    // inicia en cuanto la persona toca, hace scroll o pulsa una tecla.
+    tryPlay(false);
 
     // Intento elegante de inicio automático: en cuanto la persona
     // interactúa por primera vez con la página (clic, toque o scroll),

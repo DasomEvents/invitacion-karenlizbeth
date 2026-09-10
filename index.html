@@ -183,7 +183,7 @@
 </svg>
 
 <!-- ============ BOTÓN DE MÚSICA (flotante, visible en toda la página) ============ -->
-<audio id="bgMusic" src="audio/party.mp3" loop preload="none"></audio>
+<audio id="bgMusic" src="audio/party.mp3" loop preload="auto"></audio>
 <div class="music-toggle-wrap">
   <button id="musicToggle" class="music-toggle" type="button" aria-pressed="false" aria-label="Reproducir música de fondo">
     <span class="music-toggle__ring" aria-hidden="true"></span>
@@ -211,33 +211,8 @@
 <main>
 
   <!-- ============ 1. PORTADA ============ -->
-  <section id="portada" class="section section--hero" aria-label="Portada de la invitación">
-    <canvas id="particles" class="particles" aria-hidden="true"></canvas>
+  <section id="portada" class="section section--hero section--hero-bg" aria-label="Portada de la invitación">
     <div class="hero__vignette" aria-hidden="true"></div>
-
-    <div class="pearl-row pearl-row--top" aria-hidden="true">
-      <svg class="pearl-row__svg" viewBox="0 0 600 74" preserveAspectRatio="xMidYMid meet" style="aspect-ratio:600/74">
-        <use href="#pearl" x="0" y="6" width="62" height="62"/>
-        <use href="#pearl" x="66" y="0" width="58" height="58"/>
-        <use href="#pearl" x="130" y="8" width="62" height="62"/>
-        <use href="#pearl" x="196" y="2" width="58" height="58"/>
-        <use href="#pearl" x="260" y="10" width="64" height="64"/>
-        <use href="#pearl" x="328" y="2" width="58" height="58"/>
-        <use href="#pearl" x="392" y="8" width="62" height="62"/>
-        <use href="#pearl" x="458" y="0" width="58" height="58"/>
-        <use href="#pearl" x="522" y="6" width="62" height="62"/>
-      </svg>
-    </div>
-
-    <svg class="deco deco--rose deco--rose-tl" viewBox="0 0 120 120" aria-hidden="true"><use href="#rose"/></svg>
-    <svg class="deco deco--rose deco--rose-tr" viewBox="0 0 120 120" aria-hidden="true"><use href="#rose"/></svg>
-    <svg class="deco deco--rose deco--rose-dark deco--rose-dark-bl" viewBox="0 0 120 120" aria-hidden="true"><use href="#roseDark"/></svg>
-    <svg class="deco deco--rose deco--rose-br" viewBox="0 0 120 120" aria-hidden="true"><use href="#rose"/></svg>
-
-    <svg class="deco deco--sparkle deco--sparkle-hero-a" viewBox="0 0 40 40" aria-hidden="true"><use href="#sparkle"/></svg>
-    <svg class="deco deco--sparkle deco--sparkle-hero-b" viewBox="0 0 40 40" aria-hidden="true"><use href="#sparkle"/></svg>
-    <svg class="deco deco--sparkle deco--sparkle-hero-c" viewBox="0 0 40 40" aria-hidden="true"><use href="#sparkle"/></svg>
-    <svg class="deco deco--sparkle deco--sparkle-hero-d" viewBox="0 0 40 40" aria-hidden="true"><use href="#sparkle"/></svg>
 
     <div class="hero__content">
       <p class="eyebrow reveal" data-reveal>Tienes una invitación especial</p>
@@ -248,11 +223,6 @@
         </h1>
       </div>
       <p class="hero__subtitle reveal" data-reveal style="--d:0.28s">Mis 40 años</p>
-
-      <div class="hero__ribbon reveal" data-reveal style="--d:0.4s" aria-hidden="true">
-        <svg class="hero__ribbon-band" viewBox="0 0 800 90"><use href="#satinBand"/></svg>
-        <svg class="hero__ribbon-bow" viewBox="0 0 36 36"><use href="#ribbonBow"/></svg>
-      </div>
 
       <div class="hero__meta reveal" data-reveal style="--d:0.52s">
         <p>17 de octubre de 2026 · 5:00 PM</p>
@@ -341,11 +311,7 @@
   </section>
 
   <!-- ============ 4. DRESS CODE ============ -->
-  <section id="dresscode" class="section section--light" aria-label="Código de vestimenta">
-    <svg class="deco deco--bag deco--bag-tl" viewBox="0 0 100 118" aria-hidden="true"><use href="#bag"/></svg>
-    <svg class="deco deco--heel deco--heel-br" viewBox="0 0 130 84" aria-hidden="true"><use href="#heel"/></svg>
-    <svg class="deco deco--perfume deco--perfume-a" viewBox="0 0 100 170" aria-hidden="true"><use href="#perfume"/></svg>
-
+  <section id="dresscode" class="section section--light section--dresscode-bg" aria-label="Código de vestimenta">
     <div class="container container--narrow">
       <blockquote class="chanel-quote reveal" data-reveal>
         <p>“No hago moda, soy la moda.”</p>
@@ -431,6 +397,7 @@
     <div class="container container--narrow">
       <p class="kicker reveal" data-reveal>Te esperamos en</p>
       <h2 class="section-title reveal" data-reveal style="--d:0.08s">Jardín La Villa</h2>
+      <p class="address-line reveal" data-reveal style="--d:0.1s">Av. Primero de mayo 38, El saucillo, Pachuca, Hgo.</p>
 
       <svg class="pin-icon reveal" data-reveal style="--d:0.14s" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <path d="M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8z" fill="none" stroke="url(#silverGrad)" stroke-width="1.4"/>
@@ -444,28 +411,21 @@
   </section>
 
   <!-- ============ 7. CIERRE ============ -->
-  <section id="cierre" class="section section--hero section--closing" aria-label="Despedida">
-    <canvas id="particles2" class="particles" aria-hidden="true"></canvas>
-    <svg class="deco deco--rose deco--rose-tl" viewBox="0 0 120 120" aria-hidden="true"><use href="#rose"/></svg>
-    <svg class="deco deco--rose deco--rose-br" viewBox="0 0 120 120" aria-hidden="true"><use href="#rose"/></svg>
-    <svg class="deco deco--bag deco--sm deco--bag-cierre" viewBox="0 0 100 118" aria-hidden="true"><use href="#bag"/></svg>
-    <svg class="deco deco--heel deco--sm deco--heel-cierre" viewBox="0 0 130 84" aria-hidden="true"><use href="#heel"/></svg>
-
-    <div class="hero__content hero__content--closing">
-      <div class="closing__frame reveal" data-reveal aria-label="Fotografía de Karen Lizbeth">
-        <img src="assets/karen-glam.jpg" alt="Karen Lizbeth lista para celebrar sus 40 años" class="closing__photo">
-        <svg class="closing__frame-pearl closing__frame-pearl--tl" viewBox="0 0 40 40" aria-hidden="true"><use href="#pearl"/></svg>
-        <svg class="closing__frame-pearl closing__frame-pearl--tr" viewBox="0 0 40 40" aria-hidden="true"><use href="#pearl"/></svg>
-        <svg class="closing__frame-pearl closing__frame-pearl--bl" viewBox="0 0 40 40" aria-hidden="true"><use href="#pearl"/></svg>
-        <svg class="closing__frame-pearl closing__frame-pearl--br" viewBox="0 0 40 40" aria-hidden="true"><use href="#pearl"/></svg>
-      </div>
-
-      <div class="hero__bow reveal" data-reveal style="--d:0.1s" aria-hidden="true">
+  <!-- Misma estructura que "Un capítulo digno de celebrarse": una franja
+       sólida (aquí negra, para que el texto resalte) y, debajo, la foto
+       de la cumpleañera completa y sin recortar. La franja no tapa nada
+       de la fotografía. -->
+  <section id="cierre" class="section section--closing-photo" aria-label="Despedida">
+    <div class="closing-strip reveal" data-reveal>
+      <div class="hero__bow" aria-hidden="true">
         <svg viewBox="0 0 36 36"><use href="#ribbonBow"/></svg>
       </div>
-      <p class="closing__title reveal" data-reveal style="--d:0.2s">¡Te espero!</p>
-      <p class="closing__sub reveal" data-reveal style="--d:0.3s">Karen Lizbeth · Mis 40 años</p>
-      <p class="closing__date reveal" data-reveal style="--d:0.4s">17 de octubre de 2026 — Jardín La Villa</p>
+      <p class="closing__title">¡Te espero!</p>
+      <p class="closing__sub">Karen Lizbeth · Mis 40 años</p>
+      <p class="closing__date">17 de octubre de 2026 — Jardín La Villa</p>
+    </div>
+    <div class="closing-photo-wrap">
+      <img src="assets/karen-glam.jpg" alt="Karen Lizbeth lista para celebrar sus 40 años" class="closing-photo-full">
     </div>
   </section>
 
