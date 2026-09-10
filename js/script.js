@@ -200,9 +200,12 @@
   initParticles("particles2");
 
   /* ------------------------------------------------------------------ *
-   * 4b) Capa de brillos de fondo para TODA la página: un canvas fijo
-   *     (viewport) con destellos tipo diamante, detrás del texto y
-   *     encima de los fondos de sección. Se omite con
+   * 4b) Capa de "polvo de brillantina" para TODA la página: cientos de
+   *     partículas diminutas, animadas continuamente (parpadeo rápido +
+   *     deriva lenta), detrás del texto y encima de los fondos de
+   *     sección. Usa un sprite pre-renderizado (en vez de dibujar cada
+   *     partícula con trazos/sombras) para poder animar muchísimas a
+   *     la vez sin afectar el rendimiento. Se omite por completo con
    *     prefers-reduced-motion.
    * ------------------------------------------------------------------ */
   (function initGlobalSparkles() {
@@ -220,6 +223,46 @@
     var rafId = null;
     var running = true;
 
+    // Sprite reutilizable: un destello con halo oscuro (se lee sobre
+    // fondos claros) + núcleo blanco brillante (se lee sobre fondos
+    // oscuros). Dibujarlo una sola vez y reusarlo con drawImage es lo
+    // que permite tener cientos de partículas animadas a la vez.
+    var SPRITE_SIZE = 64;
+    var sprite = (function buildSprite() {
+      var s = document.createElement("canvas");
+      s.width = SPRITE_SIZE;
+      s.height = SPRITE_SIZE;
+      var sc = s.getContext("2d");
+      var c = SPRITE_SIZE / 2;
+
+      sc.save();
+      sc.translate(c, c);
+      sc.beginPath();
+      sc.moveTo(0, -SPRITE_SIZE * 0.42);
+      sc.lineTo(SPRITE_SIZE * 0.14, 0);
+      sc.lineTo(0, SPRITE_SIZE * 0.42);
+      sc.lineTo(-SPRITE_SIZE * 0.14, 0);
+      sc.closePath();
+
+      sc.shadowColor = "rgba(20, 20, 24, 0.95)";
+      sc.shadowBlur = SPRITE_SIZE * 0.2;
+      sc.fillStyle = "rgba(20, 20, 24, 0.95)";
+      sc.fill();
+
+      sc.shadowColor = "rgba(255, 255, 255, 1)";
+      sc.shadowBlur = SPRITE_SIZE * 0.3;
+      sc.fillStyle = "#ffffff";
+      sc.fill();
+
+      sc.shadowBlur = 0;
+      sc.lineWidth = 2;
+      sc.strokeStyle = "rgba(90, 90, 98, 0.8)";
+      sc.stroke();
+      sc.restore();
+
+      return s;
+    })();
+
     function resize() {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
       width = window.innerWidth;
@@ -231,93 +274,56 @@
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
 
+    // Muchísimas partículas pequeñas, como brillantina esparcida por
+    // toda la pantalla, no unos cuantos íconos grandes.
     function createParticles() {
-      var count = Math.min(150, Math.round((width * height) / 9500));
+      var count = Math.min(1100, Math.round((width * height) / 750));
       particles = [];
       for (var i = 0; i < count; i++) {
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          s: Math.random() * 3.6 + 2.6,
-          baseAlpha: Math.random() * 0.35 + 0.55,
+          size: Math.random() * 6.5 + 3,
+          baseAlpha: Math.random() * 0.4 + 0.55,
           phase: Math.random() * Math.PI * 2,
-          speed: Math.random() * 0.6 + 0.2,
-          driftY: -(Math.random() * 0.05 + 0.012),
-          driftX: (Math.random() - 0.5) * 0.035,
-          rot: Math.random() * Math.PI
+          flicker: Math.random() * 2.4 + 1.3,
+          driftY: Math.random() * 0.09 + 0.02,
+          driftX: (Math.random() - 0.5) * 0.05,
+          rot: Math.random() * Math.PI * 2,
+          spin: (Math.random() - 0.5) * 0.01
         });
       }
-    }
-
-    // Destello tipo diamante con doble contraste: un halo oscuro suave
-    // por debajo (para leerse sobre fondos claros) y un núcleo
-    // plateado/blanco brillante encima (para leerse sobre fondos
-    // oscuros), más un contorno definido para que nunca se pierda.
-    function drawDiamond(p, alpha) {
-      var s = p.s;
-      ctx.save();
-      ctx.translate(p.x, p.y);
-      ctx.rotate(p.rot);
-
-      ctx.beginPath();
-      ctx.moveTo(0, -s * 2.3);
-      ctx.lineTo(s * 0.65, 0);
-      ctx.lineTo(0, s * 2.3);
-      ctx.lineTo(-s * 0.65, 0);
-      ctx.closePath();
-
-      // Halo oscuro de contraste, se pinta primero y se difumina hacia
-      // afuera (visible sobre fondos claros como el marfil/blanco).
-      ctx.globalAlpha = alpha;
-      ctx.shadowColor = "rgba(30, 30, 34, 0.9)";
-      ctx.shadowBlur = s * 2;
-      ctx.fillStyle = "rgba(30, 30, 34, 0.9)";
-      ctx.fill();
-
-      // Núcleo plateado/blanco brillante, se pinta encima y cubre el
-      // relleno oscuro por completo; su propio resplandor se lee sobre
-      // fondos oscuros.
-      ctx.shadowColor = "rgba(255, 255, 255, 0.95)";
-      ctx.shadowBlur = s * 2.8;
-      ctx.fillStyle = "#ffffff";
-      ctx.fill();
-
-      // Contorno definido, para que nunca se pierda sobre ningún fondo.
-      ctx.shadowBlur = 0;
-      ctx.lineWidth = Math.max(0.8, s * 0.14);
-      ctx.strokeStyle = "rgba(90, 90, 98, 0.75)";
-      ctx.stroke();
-
-      // Destello central puntual, más pequeño y más opaco.
-      ctx.beginPath();
-      ctx.moveTo(0, -s * 0.9);
-      ctx.lineTo(s * 0.22, 0);
-      ctx.lineTo(0, s * 0.9);
-      ctx.lineTo(-s * 0.22, 0);
-      ctx.closePath();
-      ctx.fillStyle = "rgba(255, 255, 255, 0.98)";
-      ctx.fill();
-
-      ctx.restore();
     }
 
     function draw(time) {
       if (!running) return;
       ctx.clearRect(0, 0, width, height);
+      var t = time * 0.001;
 
       for (var i = 0; i < particles.length; i++) {
         var p = particles[i];
-        var twinkle = Math.sin(time * 0.001 * p.speed * 3 + p.phase) * 0.5 + 0.5;
-        var alpha = p.baseAlpha * (0.45 + twinkle * 0.55);
+
+        // Parpadeo rápido y desigual (como brillantina que capta la
+        // luz al moverse), no una pulsación suave y pareja.
+        var flick = Math.sin(t * p.flicker + p.phase);
+        flick = Math.pow(Math.max(0, flick), 2.2);
+        var alpha = p.baseAlpha * (0.32 + flick * 0.68);
 
         p.x += p.driftX;
         p.y += p.driftY;
+        p.rot += p.spin;
 
-        if (p.y < -6) p.y = height + 6;
-        if (p.x < -6) p.x = width + 6;
-        if (p.x > width + 6) p.x = -6;
+        if (p.y > height + 8) p.y = -8;
+        if (p.y < -8) p.y = height + 8;
+        if (p.x < -8) p.x = width + 8;
+        if (p.x > width + 8) p.x = -8;
 
-        drawDiamond(p, alpha);
+        ctx.save();
+        ctx.globalAlpha = alpha;
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        ctx.drawImage(sprite, -p.size / 2, -p.size / 2, p.size, p.size);
+        ctx.restore();
       }
 
       rafId = window.requestAnimationFrame(draw);
