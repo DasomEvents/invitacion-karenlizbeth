@@ -195,9 +195,11 @@
 </div>
 <p id="musicStatus" class="sr-only" role="status" aria-live="polite"></p>
 
-<!-- Capa de brillos de fondo: cubre toda la página (detrás del texto,
-     encima de los fondos de sección). Se omite con prefers-reduced-motion. -->
-<canvas id="globalSparkles" class="global-sparkles" aria-hidden="true"></canvas>
+<!-- Capa de brillantina animada: cubre toda la página, por ENCIMA del
+     contenido (no es un fondo). Usa la librería Sparticles (ver
+     js/vendor/) para un movimiento y parpadeo reales, no simulados a
+     mano. Se omite con prefers-reduced-motion. -->
+<div id="globalSparkles" class="global-sparkles" aria-hidden="true"></div>
 
 <!-- Indicador de progreso de scroll (sutil, hilo plateado) -->
 <div class="scroll-progress" aria-hidden="true"><div id="scrollProgressBar" class="scroll-progress__bar"></div></div>
@@ -464,6 +466,7 @@
 
 </main>
 
+<script src="js/vendor/sparticles.min.js"></script>
 <script src="js/script.js"></script>
 </body>
 </html>

@@ -1010,15 +1010,21 @@ input:focus-visible {
 
 .music-icon { width: 20px; height: 20px; }
 
-/* Capa de brillos de fondo (toda la página, detrás del texto) */
+/* Capa de brillantina animada: fija al viewport, cubre toda la página
+   y se ve POR ENCIMA del contenido (no es un fondo escondido). El
+   canvas lo crea la propia librería Sparticles dentro de este
+   contenedor. Queda por debajo del botón de música y la barra de
+   progreso para que sigan siendo utilizables. */
 .global-sparkles {
   position: fixed;
   inset: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: 40;
   pointer-events: none;
 }
+
+.global-sparkles canvas { display: block; }
 
 /* Barra de progreso de scroll */
 .scroll-progress {

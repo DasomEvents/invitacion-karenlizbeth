@@ -200,149 +200,43 @@
   initParticles("particles2");
 
   /* ------------------------------------------------------------------ *
-   * 4b) Capa de "polvo de brillantina" para TODA la página: cientos de
-   *     partículas diminutas, animadas continuamente (parpadeo rápido +
-   *     deriva lenta), detrás del texto y encima de los fondos de
-   *     sección. Usa un sprite pre-renderizado (en vez de dibujar cada
-   *     partícula con trazos/sombras) para poder animar muchísimas a
-   *     la vez sin afectar el rendimiento. Se omite por completo con
-   *     prefers-reduced-motion.
+   * 4b) Capa de brillantina animada para TODA la página: usa la
+   *     librería Sparticles (js/vendor/sparticles.min.js) en vez de una
+   *     animación hecha a mano, para un movimiento y parpadeo reales
+   *     (caída suave + parpadeo tipo "twinkle" + giro) con muchas
+   *     partículas a la vez. Se coloca POR ENCIMA del contenido (no es
+   *     un fondo) y se omite por completo con prefers-reduced-motion.
    * ------------------------------------------------------------------ */
   (function initGlobalSparkles() {
-    var canvas = document.getElementById("globalSparkles");
-    if (!canvas || !canvas.getContext) return;
+    var container = document.getElementById("globalSparkles");
+    if (!container || typeof window.Sparticles === "undefined") return;
 
     if (prefersReducedMotion) {
-      canvas.style.display = "none";
+      container.style.display = "none";
       return;
     }
 
-    var ctx = canvas.getContext("2d");
-    var particles = [];
-    var width, height, dpr;
-    var rafId = null;
-    var running = true;
-
-    // Sprite reutilizable: un destello con halo oscuro (se lee sobre
-    // fondos claros) + núcleo blanco brillante (se lee sobre fondos
-    // oscuros). Dibujarlo una sola vez y reusarlo con drawImage es lo
-    // que permite tener cientos de partículas animadas a la vez.
-    var SPRITE_SIZE = 64;
-    var sprite = (function buildSprite() {
-      var s = document.createElement("canvas");
-      s.width = SPRITE_SIZE;
-      s.height = SPRITE_SIZE;
-      var sc = s.getContext("2d");
-      var c = SPRITE_SIZE / 2;
-
-      sc.save();
-      sc.translate(c, c);
-      sc.beginPath();
-      sc.moveTo(0, -SPRITE_SIZE * 0.42);
-      sc.lineTo(SPRITE_SIZE * 0.14, 0);
-      sc.lineTo(0, SPRITE_SIZE * 0.42);
-      sc.lineTo(-SPRITE_SIZE * 0.14, 0);
-      sc.closePath();
-
-      sc.shadowColor = "rgba(20, 20, 24, 0.95)";
-      sc.shadowBlur = SPRITE_SIZE * 0.2;
-      sc.fillStyle = "rgba(20, 20, 24, 0.95)";
-      sc.fill();
-
-      sc.shadowColor = "rgba(255, 255, 255, 1)";
-      sc.shadowBlur = SPRITE_SIZE * 0.3;
-      sc.fillStyle = "#ffffff";
-      sc.fill();
-
-      sc.shadowBlur = 0;
-      sc.lineWidth = 2;
-      sc.strokeStyle = "rgba(90, 90, 98, 0.8)";
-      sc.stroke();
-      sc.restore();
-
-      return s;
-    })();
-
-    function resize() {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = Math.round(width * dpr);
-      canvas.height = Math.round(height * dpr);
-      canvas.style.width = width + "px";
-      canvas.style.height = height + "px";
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-
-    // Muchísimas partículas pequeñas, como brillantina esparcida por
-    // toda la pantalla, no unos cuantos íconos grandes.
-    function createParticles() {
-      var count = Math.min(1100, Math.round((width * height) / 750));
-      particles = [];
-      for (var i = 0; i < count; i++) {
-        particles.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          size: Math.random() * 6.5 + 3,
-          baseAlpha: Math.random() * 0.4 + 0.55,
-          phase: Math.random() * Math.PI * 2,
-          flicker: Math.random() * 2.4 + 1.3,
-          driftY: Math.random() * 0.09 + 0.02,
-          driftX: (Math.random() - 0.5) * 0.05,
-          rot: Math.random() * Math.PI * 2,
-          spin: (Math.random() - 0.5) * 0.01
-        });
-      }
-    }
-
-    function draw(time) {
-      if (!running) return;
-      ctx.clearRect(0, 0, width, height);
-      var t = time * 0.001;
-
-      for (var i = 0; i < particles.length; i++) {
-        var p = particles[i];
-
-        // Parpadeo rápido y desigual (como brillantina que capta la
-        // luz al moverse), no una pulsación suave y pareja.
-        var flick = Math.sin(t * p.flicker + p.phase);
-        flick = Math.pow(Math.max(0, flick), 2.2);
-        var alpha = p.baseAlpha * (0.32 + flick * 0.68);
-
-        p.x += p.driftX;
-        p.y += p.driftY;
-        p.rot += p.spin;
-
-        if (p.y > height + 8) p.y = -8;
-        if (p.y < -8) p.y = height + 8;
-        if (p.x < -8) p.x = width + 8;
-        if (p.x > width + 8) p.x = -8;
-
-        ctx.save();
-        ctx.globalAlpha = alpha;
-        ctx.translate(p.x, p.y);
-        ctx.rotate(p.rot);
-        ctx.drawImage(sprite, -p.size / 2, -p.size / 2, p.size, p.size);
-        ctx.restore();
-      }
-
-      rafId = window.requestAnimationFrame(draw);
-    }
-
-    resize();
-    createParticles();
-    rafId = window.requestAnimationFrame(draw);
-
-    window.addEventListener("resize", function () {
-      resize();
-      createParticles();
-    });
-
-    document.addEventListener("visibilitychange", function () {
-      running = !document.hidden;
-      if (running && rafId === null) {
-        rafId = window.requestAnimationFrame(draw);
-      }
+    new window.Sparticles(container, {
+      count: 115,
+      speed: 11,
+      parallax: 22,
+      direction: 180,
+      xVariance: 6,
+      yVariance: 3,
+      rotate: true,
+      rotation: 3,
+      drift: 4,
+      glow: 2,
+      twinkle: true,
+      alphaSpeed: 22,
+      alphaVariance: 6,
+      minAlpha: 0.18,
+      maxAlpha: 0.85,
+      minSize: 6,
+      maxSize: 13,
+      style: "fill",
+      shape: ["star", "diamond", "circle"],
+      color: ["#ffffff", "#f2f2f4", "#e2e3e8", "#c7c9cf"]
     });
   })();
 

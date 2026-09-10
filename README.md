@@ -1,8 +1,10 @@
 # Invitación digital — Karen Lizbeth · Mis 40 años
 
 Sitio web de una sola página (scroll vertical) para la invitación de cumpleaños
-de Karen Lizbeth. Hecho solo con HTML, CSS y JavaScript — sin frameworks, sin
-proceso de compilación — listo para subir a GitHub Pages.
+de Karen Lizbeth. Hecho con HTML, CSS y JavaScript, sin proceso de compilación
+— listo para subir a GitHub Pages. La única dependencia externa es una
+pequeña librería de animación (ver abajo), que ya viene incluida dentro del
+proyecto — no necesitas instalar nada.
 
 ## Estructura de archivos
 
@@ -12,13 +14,29 @@ proceso de compilación — listo para subir a GitHub Pages.
 ├── css/
 │   └── styles.css      → estilos, paleta de colores, tipografías, animaciones
 ├── js/
-│   └── script.js       → countdown, animaciones al hacer scroll, música, WhatsApp
+│   ├── script.js       → countdown, animaciones al hacer scroll, música, WhatsApp
+│   └── vendor/
+│       └── sparticles.min.js → librería de animación para el efecto de
+│                                brillantina (ver "Efecto de brillantina" abajo)
 ├── audio/
 │   └── README.txt      → aquí colocarás tu archivo party.mp3 (ver abajo)
 ├── assets/
 │   └── README.txt      → carpeta libre para imágenes futuras (opcional)
 └── README.md            → este archivo
 ```
+
+## Efecto de brillantina animada
+
+El efecto de destellos que se mueve por toda la página usa la librería de
+código abierto [Sparticles](https://sparticlesjs.dev/) (incluida en
+`js/vendor/sparticles.min.js`, licencia MPL-2.0), en vez de una animación
+hecha desde cero — así el movimiento (caída suave, giro y parpadeo tipo
+"twinkle") es fluido y consistente en cualquier navegador. Se inicia desde
+`js/script.js` y se puede ajustar cambiando los números en la sección
+`initGlobalSparkles` (por ejemplo `count` para la cantidad de partículas, o
+`speed` para qué tan rápido caen). Como cualquier otra animación del sitio,
+se desactiva automáticamente si el dispositivo del invitado tiene activada
+la preferencia de "reducir movimiento".
 
 ## Cómo subirlo a GitHub
 
