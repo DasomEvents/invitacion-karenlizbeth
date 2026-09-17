@@ -236,3 +236,40 @@ Todos se encuentran comentados y organizados por sección dentro de
   en botones e íconos decorativos.
 - Sin dependencias externas de compilación: solo HTML, CSS, JS y Google
   Fonts.
+
+## Compatibilidad entre navegadores y dispositivos
+
+Se encontró y corrigió un error real que podía hacer que la invitación
+pareciera "no abrir" en algunos celulares o navegadores: el script usaba
+una función (`padStart`) que no existe en algunos navegadores más
+antiguos o en el navegador interno de ciertas apps; si esa función
+fallaba, se detenía TODO el resto del script, dejando la página cargada
+pero con el contenido invisible (los textos usan una animación de
+aparición que depende de JavaScript) y el botón de WhatsApp sin
+funcionar. Ya se corrigió de dos maneras:
+
+1. Se reemplazó esa función por una versión compatible con prácticamente
+   cualquier navegador.
+2. Cada parte del script (cuenta regresiva, animaciones, música, botón
+   de WhatsApp, etc.) ahora corre de forma aislada: si alguna fallara por
+   cualquier otro motivo en algún dispositivo puntual, las demás siguen
+   funcionando con normalidad en vez de que todo el sitio deje de
+   responder. También se agregó un respaldo: si por alguna razón el
+   contenido no apareciera solo, se muestra automáticamente a los 2.5
+   segundos de cargar la página.
+
+Se probó exitosamente simulando navegadores sin estas funciones modernas
+y forzando fallas dentro de una sola parte del script, confirmando que
+el resto de la invitación (incluido el botón de confirmar asistencia)
+sigue funcionando en cualquier caso.
+
+**Importante:** esto corrige errores de código que sí podían romper la
+página en ciertos navegadores. No puede corregir, por su naturaleza, un
+problema del lado de GitHub Pages (por ejemplo, que alguna carpeta no se
+haya subido completa al repositorio, o que falte esperar unos minutos
+después de subir cambios para que se actualice el enlace). Si después de
+esta actualización alguien sigue sin poder abrir la invitación, lo más
+útil es que compartan: el enlace exacto que están usando, el modelo/tipo
+de celular y en qué app o navegador lo abrieron (Chrome, Safari, o
+directamente dentro de WhatsApp/Instagram/Facebook), y qué ven en
+pantalla (¿nada?, ¿solo una parte?, ¿algún mensaje de error?).
